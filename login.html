@@ -73,16 +73,55 @@ button:hover{
 </div>
 
 <script>
-function login(){
-    let u = document.getElementById("user").value;
-    let p = document.getElementById("pass").value;
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-    if(u=="admin" && p=="1234"){
-        window.location.href = "index.html";
-    }else{
-        document.getElementById("error").style.display="block";
-    }
-}
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDMOQzKuw8IVrq0kh35tNC-P6PuiHlIA-g",
+    authDomain: "canada-visa-system-f9c45.firebaseapp.com",
+    projectId: "canada-visa-system-f9c45",
+    storageBucket: "canada-visa-system-f9c45.firebasestorage.app",
+    messagingSenderId: "772100856692",
+    appId: "1:772100856692:web:6e28980fd79b7bee42ea21",
+    measurementId: "G-KM7X9R1Q05"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.login = function(){
+
+let email = document.getElementById("user").value;
+let password = document.getElementById("pass").value;
+
+signInWithEmailAndPassword(auth, email, password)
+.then((userCredential) => {
+
+window.location.href = "index.html";
+
+})
+.catch((error) => {
+
+alert(error.message);
+
+});
+
+ }  
+</script>
 </script>
 
 </body>
