@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canada Visa Dashboard</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.title{
+    color:#1f3c88;
+}
+
+.btn{
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.green{
+    background:#1db954;
+    color:white;
+}
+
+.gray{
+    background:#ddd;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.form-box{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    margin-bottom:20px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+input{
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    width:100%;
+}
+
+.full{
+    grid-column:1/3;
+}
+
+.blue{
+    background:#2d6cdf;
+    color:white;
+    width:100%;
+    margin-top:15px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+}
+
+.edit{
+    background:#ccc;
+    color:black;
+}
+
+.delete{
+    background:#e63946;
+    color:white;
+}
+
+@media(max-width:700px){
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <div>
+        <h1 class="title">Canada Visa Admin Dashboard</h1>
+        <p>Manage applicants and passport status</p>
+    </div>
+
+    <div>
+        <button class="btn green">New Applicant</button>
+        <button class="btn gray">Logout</button>
+    </div>
+</div>
+
+<div class="cards">
+
+<div class="card">
+    <h4>Total Applicants</h4>
+    <h1>1</h1>
+</div>
+
+<div class="card">
+    <h4>Passport Status</h4>
+    <h1>0 Processing</h1>
+</div>
+
+<div class="card">
+    <h4>Last Updated</h4>
+    <h1>19/05/2026</h1>
+</div>
+
+</div>
+
+<div class="form-box">
+
+<h2>Register Applicant</h2>
+
+<div class="form-grid">
+
+<input type="text" placeholder="Full Name">
+<input type="text" placeholder="Unique ID">
+
+<input type="text" placeholder="ID Number">
+<input type="text" placeholder="Passport Status">
+
+<input type="text" placeholder="Sex">
+<input type="text" placeholder="DOB">
+
+<input type="text" placeholder="Work / Company">
+<input type="text" placeholder="Issue Date">
+
+<input class="full" type="file">
+
+</div>
+
+<button class="btn blue">Register User</button>
+
+</div>
+
+<div class="form-box">
+
+<h2>Registered Users</h2>
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>Unique ID</th>
+<th>ID Number</th>
+<th>Actions</th>
+</tr>
+
+<tr>
+<td>Abebe Alemu</td>
+<td>2637392</td>
+<td>21345.0022650-06</td>
+<td>
+<button class="btn edit">Edit</button>
+<button class="btn delete">Delete</button>
+</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+  </html>
