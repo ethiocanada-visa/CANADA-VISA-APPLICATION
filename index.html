@@ -165,11 +165,10 @@ th,td{
 <h2>Register Applicant</h2>
 
 <div class="form-grid">
+<input type="text" id="fullname" placeholder="Full Name">
+<input type="text" id="uniqueid" placeholder="Unique ID">
 
-<input type="text" placeholder="Full Name">
-<input type="text" placeholder="Unique ID">
-
-<input type="text" placeholder="ID Number">
+<input type="text" id="idnumber" placeholder="ID Number">
 <input type="text" placeholder="Passport Status">
 
 <input type="text" placeholder="Sex">
@@ -182,7 +181,7 @@ th,td{
 
 </div>
 
-<button class="btn blue">Register User</button>
+<button class="btn blue" onclick="addUser()">Register User</button>
 
 </div>
 
@@ -208,15 +207,13 @@ th,td{
 <button class="btn delete">Delete</button>
 </td>
 </tr>
-
+<tbody id="userdata"></tbody>
 </table>
 
 </div>
 
 </div>
-  
-<script src="script.js"></script>
- <script>
+  <script>
 
 function logout(){
 
@@ -224,7 +221,29 @@ window.location.href = "login.html";
 
 }
 
- </script>   
+function addUser(){
+
+const fullname = document.getElementById("fullname").value;
+const uniqueid = document.getElementById("uniqueid").value;
+const idnumber = document.getElementById("idnumber").value;
+
+const table = document.getElementById("userdata");
+
+table.innerHTML += `
+<tr>
+<td>${fullname}</td>
+<td>${uniqueid}</td>
+<td>${idnumber}</td>
+<td>
+<button class="btn edit">Edit</button>
+<button class="btn delete">Delete</button>
+</td>
+</tr>
+`;
+
+}
+
+</script>   
 </body>
 </html>
 
