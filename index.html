@@ -12,6 +12,24 @@ font-family:Arial,sans-serif;
 background:#f4f6f9;
 margin:0;
 padding:20px;
+transition:0.3s;
+}
+
+.dark{
+background:#111;
+color:white;
+}
+
+.dark .card,
+.dark .form-box{
+background:#1e1e1e;
+color:white;
+}
+
+.dark input{
+background:#333;
+color:white;
+border:1px solid #555;
 }
 
 .container{
@@ -36,6 +54,7 @@ border:none;
 border-radius:8px;
 cursor:pointer;
 font-weight:bold;
+margin:3px;
 }
 
 .green{
@@ -153,11 +172,19 @@ window.location.href = "login.html";
 </div>
 
 <div>
-<button class="btn green">New Applicant</button>
+
+<button class="btn" onclick="darkMode()">
+Dark Mode
+</button>
+
+<button class="btn green">
+New Applicant
+</button>
 
 <button class="btn gray" onclick="logout()">
 Logout
 </button>
+
 </div>
 
 </div>
@@ -281,6 +308,12 @@ document.getElementById("userdata").innerHTML =
 localStorage.getItem("userdata");
 
 }
+
+}
+
+function darkMode(){
+
+document.body.classList.toggle("dark");
 
 }
 
