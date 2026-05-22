@@ -6,6 +6,7 @@
 <title>Canada Visa Dashboard</title>
 
 <style>
+
 body{
     font-family: Arial, sans-serif;
     background:#f4f6f9;
@@ -116,18 +117,22 @@ th,td{
 }
 
 @media(max-width:700px){
-    .form-grid{
-        grid-template-columns:1fr;
-    }
 
-    .full{
-        grid-column:1;
-    }
+.form-grid{
+grid-template-columns:1fr;
 }
+
+.full{
+grid-column:1;
+}
+
+}
+
 </style>
 </head>
 
 <body>
+
 <script>
 
 if(localStorage.getItem("loggedIn") !== "true"){
@@ -137,35 +142,39 @@ window.location.href = "login.html";
 }
 
 </script>
+
 <div class="container">
 
 <div class="header">
-    <div>
-        <h1 class="title">Canada Visa Admin Dashboard</h1>
-        <p>Manage applicants and passport status</p>
-    </div>
 
-    <div>
-        <button class="btn green">New Applicant</button>
-        <button class="btn gray" onclick="logout()">Logout</button>
-    </div>
+<div>
+<h1 class="title">Canada Visa Admin Dashboard</h1>
+<p>Manage applicants and passport status</p>
+</div>
+
+<div>
+<button class="btn green">New Applicant</button>
+
+<button class="btn gray" onclick="logout()">Logout</button>
+</div>
+
 </div>
 
 <div class="cards">
 
 <div class="card">
-    <h4>Total Applicants</h4>
-    <h1 id="total">1</h1>
+<h4>Total Applicants</h4>
+<h1 id="total">1</h1>
 </div>
 
 <div class="card">
-    <h4>Passport Status</h4>
-    <h1>0 Processing</h1>
+<h4>Passport Status</h4>
+<h1>0 Processing</h1>
 </div>
 
 <div class="card">
-    <h4>Last Updated</h4>
-    <h1>19/05/2026</h1>
+<h4>Last Updated</h4>
+<h1>19/05/2026</h1>
 </div>
 
 </div>
@@ -177,22 +186,28 @@ window.location.href = "login.html";
 <div class="form-grid">
 
 <input type="text" id="fullname" placeholder="Full Name">
+
 <input type="text" id="uniqueid" placeholder="Unique ID">
 
 <input type="text" id="idnumber" placeholder="ID Number">
+
 <input type="text" placeholder="Passport Status">
 
 <input type="text" placeholder="Sex">
+
 <input type="text" placeholder="DOB">
 
 <input type="text" placeholder="Work / Company">
+
 <input type="text" placeholder="Issue Date">
 
 <input class="full" type="file">
 
 </div>
 
-<button class="btn blue" onclick="addUser()">Register User</button>
+<button class="btn blue" onclick="addUser()">
+Register User
+</button>
 
 </div>
 
@@ -200,7 +215,12 @@ window.location.href = "login.html";
 
 <h2>Registered Users</h2>
 
-<input type="text" id="search" placeholder="Search user..." onkeyup="searchUser()">
+<input
+type="text"
+id="search"
+placeholder="Search user..."
+onkeyup="searchUser()"
+>
 
 <table>
 
@@ -212,15 +232,27 @@ window.location.href = "login.html";
 </tr>
 
 <tbody id="userdata">
+
 <tr>
 <td>Abebe Alemu</td>
 <td>2637392</td>
 <td>21345.0022650-06</td>
 <td>
-<button class="btn edit">Edit</button>
-<button class="btn delete" onclick="deleteRow(this)">Delete</button>
+
+<button class="btn edit">
+Edit
+</button>
+
+<button
+class="btn delete"
+onclick="deleteRow(this)"
+>
+Delete
+</button>
+
 </td>
 </tr>
+
 </tbody>
 
 </table>
@@ -231,9 +263,14 @@ window.location.href = "login.html";
 
 <script>
 
-function logout(){
+window.onload = function(){
 
-window.location.href = "login.html";
+if(localStorage.getItem("userdata")){
+
+document.getElementById("userdata").innerHTML =
+localStorage.getItem("userdata");
+
+}
 
 }
 
@@ -243,56 +280,116 @@ localStorage.removeItem("loggedIn");
 
 window.location.href = "login.html";
 
-    }
+}
+
+function deleteRow(button){
+
+button.parentElement.parentElement.remove();
+
+localStorage.setItem(
+"userdata",
+document.getElementById("userdata").innerHTML
+);
+
+}
 
 function addUser(){
 
-const fullname = document.getElementById("fullname").value;
-const uniqueid = document.getElementById("uniqueid").value;
-const idnumber = document.getElementById("idnumber").value;
+const fullname =
+document.getElementById("fullname").value;
 
-if(fullname === "" || uniqueid === "" || idnumber === ""){
+const uniqueid =
+document.getElementById("uniqueid").value;
+
+const idnumber =
+document.getElementById("idnumber").value;
+
+if(
+fullname === "" ||
+uniqueid === "" ||
+idnumber === ""
+){
+
 alert("Please fill all fields");
+
 return;
+
 }
 
-const table = document.getElementById("userdata");
+const table =
+document.getElementById("userdata");
 
 table.innerHTML += `
+
 <tr>
+
 <td>${fullname}</td>
+
 <td>${uniqueid}</td>
+
 <td>${idnumber}</td>
+
 <td>
-<button class="btn edit">Edit</button>
-<button class="btn delete" onclick="deleteRow(this)">Delete</button>
+
+<button class="btn edit">
+Edit
+</button>
+
+<button
+class="btn delete"
+onclick="deleteRow(this)"
+>
+Delete
+</button>
+
 </td>
+
 </tr>
+
 `;
 
-const total = document.querySelectorAll("#userdata tr").length;
-document.getElementById("total").innerText = total;
+localStorage.setItem(
+"userdata",
+table.innerHTML
+);
+
+const total =
+document.querySelectorAll("#userdata tr").length;
+
+document.getElementById("total").innerText =
+total;
 
 document.getElementById("fullname").value = "";
+
 document.getElementById("uniqueid").value = "";
+
 document.getElementById("idnumber").value = "";
 
 }
 
 function searchUser(){
 
-const input = document.getElementById("search").value.toLowerCase();
+const input =
+document.getElementById("search")
+.value
+.toLowerCase();
 
-const rows = document.querySelectorAll("#userdata tr");
+const rows =
+document.querySelectorAll("#userdata tr");
 
 rows.forEach((row) => {
 
-const text = row.innerText.toLowerCase();
+const text =
+row.innerText.toLowerCase();
 
 if(text.includes(input)){
+
 row.style.display = "";
+
 }else{
+
 row.style.display = "none";
+
 }
 
 });
@@ -303,4 +400,3 @@ row.style.display = "none";
 
 </body>
     </html>
-    
