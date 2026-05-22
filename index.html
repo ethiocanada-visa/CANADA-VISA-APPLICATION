@@ -42,6 +42,8 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 margin-bottom:20px;
+gap:10px;
+flex-wrap:wrap;
 }
 
 .title{
@@ -182,6 +184,13 @@ window.location.href = "login.html";
 
 <button class="btn" onclick="darkMode()">
 Dark Mode
+</button>
+
+<button
+class="btn green"
+onclick="downloadData()"
+>
+Export Users
 </button>
 
 <button class="btn green">
@@ -508,6 +517,26 @@ row.style.display = "none";
 
 }
 
+function downloadData(){
+
+const data =
+document.getElementById("userdata").innerText;
+
+const blob =
+new Blob([data], { type: "text/plain" });
+
+const a =
+document.createElement("a");
+
+a.href =
+URL.createObjectURL(blob);
+
+a.download = "users.txt";
+
+a.click();
+
+}
+
 setTimeout(() => {
 
 localStorage.removeItem("loggedIn");
@@ -521,4 +550,4 @@ window.location.href = "login.html";
 </script>
 
 </body>
-</html>
+  </html>
