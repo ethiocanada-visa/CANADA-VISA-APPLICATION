@@ -3,55 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - Canada Visa</title>
+<title>Canada Visa Dashboard</title>
 
 <style>
 
 body{
-font-family:Arial;
+font-family:Arial,sans-serif;
 background:#f4f6f9;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
 margin:0;
+padding:20px;
+transition:0.3s;
 }
 
-.box{
-background:white;
-padding:30px;
-border-radius:12px;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
-width:320px;
+.dark{
+background:#111;
+color:white;
 }
 
-h2{
-text-align:center;
+.dark .card,
+.dark .form-box{
+background:#1e1e1e;
+color:white;
+}
+
+.dark input{
+background:#333;
+color:white;
+border:1px solid #555;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.title{
 color:#1f3c88;
 }
 
-input{
+.btn{
+padding:12px 20px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+margin:3px;
+}
+
+.green{
+background:#1db954;
+color:white;
+}
+
+.gray{
+background:#ddd;
+}
+
+.blue{
+background:#2d6cdf;
+color:white;
 width:100%;
+margin-top:15px;
+}
+
+.edit{
+background:#ccc;
+color:black;
+}
+
+.delete{
+background:#e63946;
+color:white;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+margin-bottom:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.form-box{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
+margin-bottom:20px;
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+}
+
+input{
 padding:12px;
-margin:10px 0;
 border:1px solid #ccc;
 border-radius:8px;
+width:100%;
 box-sizing:border-box;
 }
 
-button{
-width:100%;
-padding:12px;
-border:none;
-background:#2d6cdf;
-color:white;
-border-radius:8px;
-cursor:pointer;
-font-size:16px;
+.full{
+grid-column:1/3;
 }
 
-button:hover{
-background:#1f4fbf;
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #ddd;
+text-align:left;
+}
+
+#preview{
+width:120px;
+margin-top:10px;
+border-radius:10px;
+display:none;
+}
+
+@media(max-width:700px){
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+.full{
+grid-column:1;
+}
+
 }
 
 </style>
@@ -59,59 +159,364 @@ background:#1f4fbf;
 
 <body>
 
-<div class="box">
+<script>
 
-<h2>Admin Login</h2>
+if(localStorage.getItem("loggedIn") !== "true"){
 
-<input
-type="email"
-id="user"
-placeholder="Email"
->
+window.location.href = "login.html";
 
-<input
-type="password"
-id="pass"
-placeholder="Password"
->
+}
 
-<button onclick="login()">
-Login
+</script>
+
+<div class="container">
+
+<div class="header">
+
+<div>
+<h1 class="title">Canada Visa Admin Dashboard</h1>
+<p>Manage applicants and passport status</p>
+</div>
+
+<div>
+
+<button class="btn" onclick="darkMode()">
+Dark Mode
 </button>
+
+<button class="btn green">
+New Applicant
+</button>
+
+<button class="btn gray" onclick="logout()">
+Logout
+</button>
+
+</div>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h4>Total Applicants</h4>
+<h1 id="total">1</h1>
+</div>
+
+<div class="card">
+<h4>Passport Status</h4>
+<h1>0 Processing</h1>
+</div>
+
+<div class="card">
+<h4>Last Updated</h4>
+<h1>19/05/2026</h1>
+</div>
+
+</div>
+
+<div class="form-box">
+
+<h2>Register Applicant</h2>
+
+<div class="form-grid">
+
+<input type="text" id="fullname" placeholder="Full Name">
+
+<input type="text" id="uniqueid" placeholder="Unique ID">
+
+<input type="text" id="idnumber" placeholder="ID Number">
+
+<input type="text" placeholder="Passport Status">
+
+<input type="text" placeholder="Sex">
+
+<input type="text" placeholder="DOB">
+
+<input type="text" placeholder="Work / Company">
+
+<input type="text" placeholder="Issue Date">
+
+<input
+class="full"
+type="file"
+id="photo"
+onchange="previewImage(event)"
+>
+
+<img id="preview">
+
+</div>
+
+<button class="btn blue" onclick="addUser()">
+Register User
+</button>
+
+</div>
+
+<div class="form-box">
+
+<h2>Registered Users</h2>
+
+<input
+type="text"
+id="search"
+placeholder="Search user..."
+onkeyup="searchUser()"
+>
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>Unique ID</th>
+<th>ID Number</th>
+<th>Actions</th>
+</tr>
+
+<tbody id="userdata">
+
+<tr>
+
+<td>Abebe Alemu</td>
+
+<td>2637392</td>
+
+<td>21345.0022650-06</td>
+
+<td>
+
+<button
+class="btn edit"
+onclick="editRow(this)"
+>
+Edit
+</button>
+
+<button
+class="btn delete"
+onclick="deleteRow(this)"
+>
+Delete
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
 
 </div>
 
 <script>
 
-function login(){
+window.onload = function(){
 
-const email =
-document.getElementById("user").value;
+if(localStorage.getItem("userdata")){
 
-const password =
-document.getElementById("pass").value;
+document.getElementById("userdata").innerHTML =
+localStorage.getItem("userdata");
 
-if(
-email === "canadaadmin@gmail.com"
-&&
-password === "Canada2026"
-){
+}
+
+}
+
+function darkMode(){
+
+document.body.classList.toggle("dark");
+
+}
+
+function logout(){
+
+localStorage.removeItem("loggedIn");
+
+window.location.href = "login.html";
+
+}
+
+function previewImage(event){
+
+const image =
+document.getElementById("preview");
+
+image.src =
+URL.createObjectURL(event.target.files[0]);
+
+image.style.display = "block";
+
+}
+
+function deleteRow(button){
+
+button.parentElement.parentElement.remove();
 
 localStorage.setItem(
-"loggedIn",
-"true"
+"userdata",
+document.getElementById("userdata").innerHTML
 );
 
-window.location.href =
-"index.html";
+}
+
+function editRow(button){
+
+const row =
+button.parentElement.parentElement;
+
+const name = row.cells[0];
+
+const unique = row.cells[1];
+
+const idnum = row.cells[2];
+
+const newName =
+prompt("Edit Name", name.innerText);
+
+const newUnique =
+prompt("Edit Unique ID", unique.innerText);
+
+const newId =
+prompt("Edit ID Number", idnum.innerText);
+
+if(newName !== null){
+
+name.innerText = newName;
+
+unique.innerText = newUnique;
+
+idnum.innerText = newId;
+
+localStorage.setItem(
+"userdata",
+document.getElementById("userdata").innerHTML
+);
+
+}
+
+}
+
+function addUser(){
+
+const fullname =
+document.getElementById("fullname").value;
+
+const uniqueid =
+document.getElementById("uniqueid").value;
+
+const idnumber =
+document.getElementById("idnumber").value;
+
+if(
+fullname === "" ||
+uniqueid === "" ||
+idnumber === ""
+){
+
+alert("Please fill all fields");
+
+return;
+
+}
+
+const table =
+document.getElementById("userdata");
+
+table.innerHTML += `
+
+<tr>
+
+<td>${fullname}</td>
+
+<td>${uniqueid}</td>
+
+<td>${idnumber}</td>
+
+<td>
+
+<button
+class="btn edit"
+onclick="editRow(this)"
+>
+Edit
+</button>
+
+<button
+class="btn delete"
+onclick="deleteRow(this)"
+>
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+localStorage.setItem(
+"userdata",
+table.innerHTML
+);
+
+const total =
+document.querySelectorAll("#userdata tr").length;
+
+document.getElementById("total").innerText =
+total;
+
+document.getElementById("fullname").value = "";
+
+document.getElementById("uniqueid").value = "";
+
+document.getElementById("idnumber").value = "";
+
+document.getElementById("preview").style.display =
+"none";
+
+}
+
+function searchUser(){
+
+const input =
+document.getElementById("search")
+.value
+.toLowerCase();
+
+const rows =
+document.querySelectorAll("#userdata tr");
+
+rows.forEach((row) => {
+
+const text =
+row.innerText.toLowerCase();
+
+if(text.includes(input)){
+
+row.style.display = "";
 
 }else{
 
-alert("Wrong email or password");
+row.style.display = "none";
 
 }
 
+});
+
 }
+
+setTimeout(() => {
+
+localStorage.removeItem("loggedIn");
+
+alert("Session expired");
+
+window.location.href = "login.html";
+
+}, 1800000);
 
 </script>
 
