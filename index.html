@@ -220,7 +220,11 @@ function logout(){
 window.location.href = "login.html";
 
 }
+function deleteRow(button){
 
+button.parentElement.parentElement.remove();
+
+    }
 function addUser(){
 
 const fullname = document.getElementById("fullname").value;
@@ -237,11 +241,7 @@ table.innerHTML += `
 <td>
 <button class="btn edit">Edit</button>
 <button class="btn delete" onclick="deleteRow(this)">Delete</button>
-function deleteRow(button){
 
-button.parentElement.parentElement.remove();
-
-    }
 </td>
 </tr>
 `;
