@@ -6,6 +6,7 @@
 <title>Login - Canada Visa</title>
 
 <style>
+
 body{
     font-family: Arial;
     background:#f4f6f9;
@@ -21,7 +22,7 @@ body{
     padding:30px;
     border-radius:12px;
     box-shadow:0 2px 10px rgba(0,0,0,0.1);
-    width:300px;
+    width:320px;
 }
 
 h2{
@@ -35,6 +36,7 @@ input{
     margin:10px 0;
     border:1px solid #ccc;
     border-radius:8px;
+    box-sizing:border-box;
 }
 
 button{
@@ -45,30 +47,28 @@ button{
     color:white;
     border-radius:8px;
     cursor:pointer;
+    font-size:16px;
 }
 
 button:hover{
     background:#1f4fbf;
 }
 
-.error{
-    color:red;
-    text-align:center;
-    display:none;
-}
 </style>
 </head>
 
 <body>
 
 <div class="box">
-    <h2>Admin Login</h2>
 
-    <input type="email" id="user" placeholder="Email">
-    <input type="password" id="pass" placeholder="Password">
-    <button onclick="login()">Login</button>
+<h2>Admin Login</h2>
 
-    <p class="error" id="error">Wrong username or password</p>
+<input type="email" id="user" placeholder="Email">
+
+<input type="password" id="pass" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
 </div>
 
 <script>
@@ -79,6 +79,8 @@ const email = document.getElementById("user").value;
 const password = document.getElementById("pass").value;
 
 if(email === "canadaadmin@gmail.com" && password === "Canada2026"){
+
+localStorage.setItem("loggedIn", "true");
 
 window.location.href = "index.html";
 
@@ -91,5 +93,6 @@ alert("Wrong email or password");
 }
 
 </script>
+
 </body>
 </html>
