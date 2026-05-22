@@ -135,6 +135,13 @@ border-bottom:1px solid #ddd;
 text-align:left;
 }
 
+#preview{
+width:120px;
+margin-top:10px;
+border-radius:10px;
+display:none;
+}
+
 @media(max-width:700px){
 
 .form-grid{
@@ -230,7 +237,14 @@ Logout
 
 <input type="text" placeholder="Issue Date">
 
-<input class="full" type="file">
+<input
+class="full"
+type="file"
+id="photo"
+onchange="previewImage(event)"
+>
+
+<img id="preview">
 
 </div>
 
@@ -322,6 +336,18 @@ function logout(){
 localStorage.removeItem("loggedIn");
 
 window.location.href = "login.html";
+
+}
+
+function previewImage(event){
+
+const image =
+document.getElementById("preview");
+
+image.src =
+URL.createObjectURL(event.target.files[0]);
+
+image.style.display = "block";
 
 }
 
@@ -447,6 +473,9 @@ document.getElementById("fullname").value = "";
 document.getElementById("uniqueid").value = "";
 
 document.getElementById("idnumber").value = "";
+
+document.getElementById("preview").style.display =
+"none";
 
 }
 
