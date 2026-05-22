@@ -128,7 +128,15 @@ th,td{
 </head>
 
 <body>
+<script>
 
+if(localStorage.getItem("loggedIn") !== "true"){
+
+window.location.href = "login.html";
+
+}
+
+</script>
 <div class="container">
 
 <div class="header">
@@ -229,11 +237,13 @@ window.location.href = "login.html";
 
 }
 
-function deleteRow(button){
+function logout(){
 
-button.parentElement.parentElement.remove();
+localStorage.removeItem("loggedIn");
 
-}
+window.location.href = "login.html";
+
+    }
 
 function addUser(){
 
