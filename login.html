@@ -3,55 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - Canada Visa</title>
+<title>Admin Login</title>
 
 <style>
 
 body{
-    font-family: Arial;
-    background:#f4f6f9;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    margin:0;
+font-family:Arial;
+background:#f4f6f9;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
 }
 
 .box{
-    background:white;
-    padding:30px;
-    border-radius:12px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
-    width:320px;
+background:white;
+padding:30px;
+border-radius:12px;
+width:320px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
 
 h2{
-    text-align:center;
-    color:#1f3c88;
+text-align:center;
+color:#1f3c88;
+margin-bottom:20px;
 }
 
 input{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border:1px solid #ccc;
-    border-radius:8px;
-    box-sizing:border-box;
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
 }
 
 button{
-    width:100%;
-    padding:12px;
-    border:none;
-    background:#2d6cdf;
-    color:white;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:16px;
+width:100%;
+padding:12px;
+border:none;
+background:#2d6cdf;
+color:white;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
 }
 
 button:hover{
-    background:#1f4fbf;
+background:#1f4fbf;
 }
 
 </style>
@@ -63,11 +63,19 @@ button:hover{
 
 <h2>Admin Login</h2>
 
-<input type="email" id="user" placeholder="Email">
+<input
+type="email"
+id="email"
+placeholder="Enter Email">
 
-<input type="password" id="pass" placeholder="Password">
+<input
+type="password"
+id="password"
+placeholder="Enter Password">
 
-<button onclick="login()">Login</button>
+<button onclick="login()">
+Login
+</button>
 
 </div>
 
@@ -75,18 +83,28 @@ button:hover{
 
 function login(){
 
-const email = document.getElementById("user").value;
-const password = document.getElementById("pass").value;
+const email =
+document.getElementById("email").value;
 
-if(email === "canadaadmin@gmail.com" && password === "Canada2026"){
+const password =
+document.getElementById("password").value;
 
-localStorage.setItem("loggedIn", "true");
+if(
+email === "canadaadmin@gmail.com"
+&&
+password === "Canada2026"
+){
+
+localStorage.setItem(
+"adminLoggedIn",
+"true"
+);
 
 window.location.href = "index.html";
 
 }else{
 
-alert("Wrong email or password");
+alert("Wrong Email or Password");
 
 }
 
