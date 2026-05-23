@@ -24,6 +24,8 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 margin-bottom:20px;
+flex-wrap:wrap;
+gap:10px;
 }
 
 .title{
@@ -31,7 +33,7 @@ color:#1f3c88;
 }
 
 .btn{
-padding:12px 20px;
+padding:10px 18px;
 border:none;
 border-radius:8px;
 cursor:pointer;
@@ -57,6 +59,12 @@ margin-top:15px;
 .delete{
 background:#e63946;
 color:white;
+}
+
+.edit{
+background:#ff9800;
+color:white;
+margin-right:5px;
 }
 
 .cards{
@@ -92,6 +100,7 @@ padding:12px;
 border:1px solid #ccc;
 border-radius:8px;
 width:100%;
+box-sizing:border-box;
 }
 
 table{
@@ -103,13 +112,14 @@ th,td{
 padding:12px;
 border-bottom:1px solid #ddd;
 text-align:left;
+font-size:14px;
 }
 
 .status{
 padding:6px 10px;
 border-radius:6px;
 color:white;
-font-size:14px;
+font-size:13px;
 }
 
 .processing{
@@ -128,6 +138,15 @@ background:red;
 
 .form-grid{
 grid-template-columns:1fr;
+}
+
+table{
+font-size:12px;
+}
+
+.btn{
+padding:8px 12px;
+font-size:12px;
 }
 
 }
@@ -224,6 +243,19 @@ Register User
 <div class="form-box">
 
 <h2>Registered Users</h2>
+
+<input
+type="text"
+id="search"
+placeholder="Search Applicant"
+onkeyup="searchUser()"
+style="
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border:1px solid #ccc;
+border-radius:8px;
+">
 
 <table>
 
@@ -370,6 +402,17 @@ ${data.passport}
 <td>
 
 <button
+class="btn edit"
+onclick="editUser(
+'${data.fullname}',
+'${data.uniqueid}',
+'${data.idnumber}',
+'${data.passport}'
+)">
+Edit
+</button>
+
+<button
 class="btn delete"
 onclick="deleteUser('${userDoc.id}')">
 Delete
@@ -387,6 +430,27 @@ document.getElementById("total").innerText = count;
 
 }
 
+window.editUser = function(
+fullname,
+uniqueid,
+idnumber,
+passport
+){
+
+document.getElementById("fullname").value =
+fullname;
+
+document.getElementById("uniqueid").value =
+uniqueid;
+
+document.getElementById("idnumber").value =
+idnumber;
+
+document.getElementById("passport").value =
+passport;
+
+}
+
 window.deleteUser = async function(id){
 
 await deleteDoc(doc(db,"users",id));
@@ -395,9 +459,37 @@ location.reload();
 
 }
 
+window.searchUser = function(){
+
+const input =
+document.getElementById("search")
+.value.toLowerCase();
+
+const rows =
+document.querySelectorAll("#userdata tr");
+
+rows.forEach((row)=>{
+
+const text =
+row.innerText.toLowerCase();
+
+if(text.includes(input)){
+
+row.style.display = "";
+
+}else{
+
+row.style.display = "none";
+
+}
+
+});
+
+}
+
 loadUsers();
 
 </script>
 
 </body>
-</html>
+  </html>
