@@ -105,6 +105,25 @@ border-bottom:1px solid #ddd;
 text-align:left;
 }
 
+.status{
+padding:6px 10px;
+border-radius:6px;
+color:white;
+font-size:14px;
+}
+
+.processing{
+background:orange;
+}
+
+.approved{
+background:green;
+}
+
+.rejected{
+background:red;
+}
+
 @media(max-width:700px){
 
 .form-grid{
@@ -118,6 +137,16 @@ grid-template-columns:1fr;
 
 <body>
 
+<script>
+
+if(localStorage.getItem("adminLoggedIn") !== "true"){
+
+window.location.href = "login.html";
+
+}
+
+</script>
+
 <div class="container">
 
 <div class="header">
@@ -128,8 +157,13 @@ grid-template-columns:1fr;
 </div>
 
 <div>
-<button class="btn green">New Applicant</button>
-<button class="btn gray" onclick="logout()">Logout</button>
+<button class="btn green">
+New Applicant
+</button>
+
+<button class="btn gray" onclick="logout()">
+Logout
+</button>
 </div>
 
 </div>
@@ -142,8 +176,8 @@ grid-template-columns:1fr;
 </div>
 
 <div class="card">
-<h4>Passport Status</h4>
-<h1>Processing</h1>
+<h4>System Status</h4>
+<h1>Online</h1>
 </div>
 
 <div class="card">
@@ -159,13 +193,25 @@ grid-template-columns:1fr;
 
 <div class="form-grid">
 
-<input type="text" id="fullname" placeholder="Full Name">
+<input
+type="text"
+id="fullname"
+placeholder="Full Name">
 
-<input type="text" id="uniqueid" placeholder="Unique ID">
+<input
+type="text"
+id="uniqueid"
+placeholder="Unique ID">
 
-<input type="text" id="idnumber" placeholder="ID Number">
+<input
+type="text"
+id="idnumber"
+placeholder="ID Number">
 
-<input type="text" id="passport" placeholder="Passport Status">
+<input
+type="text"
+id="passport"
+placeholder="Passport Status">
 
 </div>
 
@@ -237,6 +283,10 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 window.logout = function(){
+
+localStorage.removeItem(
+"adminLoggedIn"
+);
 
 window.location.href = "login.html";
 
@@ -311,7 +361,11 @@ table.innerHTML += `
 
 <td>${data.idnumber}</td>
 
-<td>${data.passport}</td>
+<td>
+<span class="status processing">
+${data.passport}
+</span>
+</td>
 
 <td>
 
@@ -346,4 +400,4 @@ loadUsers();
 </script>
 
 </body>
-                </html>
+</html>
