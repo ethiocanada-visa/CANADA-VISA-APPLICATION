@@ -221,6 +221,35 @@ font-weight:bold;
 z-index:999;
 }
 
+#notification{
+position:fixed;
+top:20px;
+right:20px;
+background:#16a34a;
+color:white;
+padding:15px 20px;
+border-radius:10px;
+font-weight:bold;
+display:none;
+z-index:1000;
+box-shadow:0 4px 12px rgba(0,0,0,0.2);
+animation:slideIn 0.4s ease;
+}
+
+@keyframes slideIn{
+
+from{
+transform:translateX(100%);
+opacity:0;
+}
+
+to{
+transform:translateX(0);
+opacity:1;
+}
+
+}
+
 @media(max-width:700px){
 
 .form-grid{
@@ -246,6 +275,10 @@ font-size:24px;
 </head>
 
 <body>
+
+<div id="notification">
+✅ Action Completed
+</div>
 
 <button
 id="darkModeBtn"
@@ -439,6 +472,25 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
+window.showNotification = function(message){
+
+const notification =
+document.getElementById(
+"notification"
+);
+
+notification.innerText = message;
+
+notification.style.display = "block";
+
+setTimeout(()=>{
+
+notification.style.display = "none";
+
+},3000);
+
+}
+
 window.logout = function(){
 
 localStorage.removeItem(
@@ -499,7 +551,10 @@ idnumber === "" ||
 passport === ""
 ){
 
-alert("Please fill all fields");
+showNotification(
+"⚠️ Please fill all fields"
+);
+
 return;
 
 }
@@ -522,9 +577,15 @@ photo: photoUrl
 
 });
 
-alert("User Registered Successfully");
+showNotification(
+"✅ Applicant Registered"
+);
+
+setTimeout(()=>{
 
 location.reload();
+
+},1200);
 
 };
 
@@ -546,9 +607,15 @@ photo: ""
 
 });
 
-alert("User Registered Successfully");
+showNotification(
+"✅ Applicant Registered"
+);
+
+setTimeout(()=>{
 
 location.reload();
+
+},1200);
 
 }
 
@@ -745,13 +812,25 @@ idnumber;
 document.getElementById("passport").value =
 passport;
 
+showNotification(
+"✏️ Applicant Loaded"
+);
+
 }
 
 window.deleteUser = async function(id){
 
 await deleteDoc(doc(db,"users",id));
 
+showNotification(
+"🗑 Applicant Deleted"
+);
+
+setTimeout(()=>{
+
 location.reload();
+
+},1200);
 
 }
 
