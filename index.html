@@ -16,6 +16,7 @@ background:linear-gradient(
 );
 margin:0;
 padding:20px;
+transition:0.3s;
 }
 
 .container{
@@ -111,6 +112,7 @@ padding:25px;
 border-radius:18px;
 box-shadow:0 6px 18px rgba(0,0,0,0.08);
 margin-bottom:20px;
+transition:0.3s;
 }
 
 .form-grid{
@@ -172,6 +174,53 @@ object-fit:cover;
 border:2px solid #d52b1e;
 }
 
+.dark{
+background:#0f172a;
+color:white;
+}
+
+.dark .card,
+.dark .form-box{
+background:#1e293b;
+color:white;
+}
+
+.dark input{
+background:#0f172a;
+color:white;
+border:1px solid #334155;
+}
+
+.dark table{
+color:white;
+}
+
+.dark th{
+background:#111827;
+}
+
+.dark td{
+border-bottom:1px solid #334155;
+}
+
+.dark .title{
+color:white;
+}
+
+#darkModeBtn{
+position:fixed;
+bottom:20px;
+right:20px;
+padding:12px 18px;
+border:none;
+border-radius:50px;
+background:#111;
+color:white;
+cursor:pointer;
+font-weight:bold;
+z-index:999;
+}
+
 @media(max-width:700px){
 
 .form-grid{
@@ -197,6 +246,12 @@ font-size:24px;
 </head>
 
 <body>
+
+<button
+id="darkModeBtn"
+onclick="toggleDarkMode()">
+🌙 Dark Mode
+</button>
 
 <script>
 
@@ -394,6 +449,30 @@ window.location.href = "login.html";
 
 }
 
+window.toggleDarkMode = function(){
+
+document.body.classList.toggle(
+"dark"
+);
+
+localStorage.setItem(
+"darkMode",
+document.body.classList.contains("dark")
+);
+
+}
+
+if(
+localStorage.getItem("darkMode")
+=== "true"
+){
+
+document.body.classList.add(
+"dark"
+);
+
+}
+
 window.addUser = async function(){
 
 const fullname =
@@ -412,6 +491,18 @@ const photoInput =
 document.getElementById("photo");
 
 let photoUrl = "";
+
+if(
+fullname === "" ||
+uniqueid === "" ||
+idnumber === "" ||
+passport === ""
+){
+
+alert("Please fill all fields");
+return;
+
+}
 
 if(photoInput.files[0]){
 
@@ -443,20 +534,17 @@ photoInput.files[0]
 
 return;
 
-  }
-
-if(
-fullname === "" ||
-uniqueid === "" ||
-idnumber === "" ||
-passport === ""
-){
-
-alert("Please fill all fields");
-return;
-
 }
 
+await addDoc(collection(db,"users"),{
+
+fullname,
+uniqueid,
+idnumber,
+passport,
+photo: ""
+
+});
 
 alert("User Registered Successfully");
 
