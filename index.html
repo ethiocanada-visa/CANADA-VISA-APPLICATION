@@ -120,11 +120,12 @@ border:2px solid #d52b1e;
 }
 
 .status{
-padding:5px 10px;
+padding:8px;
 border-radius:5px;
 color:white;
 font-size:12px;
 font-weight:bold;
+border:none;
 }
 
 .approved{
@@ -149,10 +150,6 @@ background:#ff9800;
 
 .print{
 background:#673ab7;
-}
-
-.save{
-background:#16a34a;
 }
 
 #notification{
@@ -516,8 +513,7 @@ const data = userDoc.data();
 let statusClass = "processing";
 
 if(
-data.passport.toLowerCase()
-.includes("approved")
+data.passport === "Approved"
 ){
 
 approved++;
@@ -525,8 +521,7 @@ statusClass = "approved";
 
 }
 else if(
-data.passport.toLowerCase()
-.includes("rejected")
+data.passport === "Rejected"
 ){
 
 rejected++;
@@ -560,9 +555,29 @@ onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
 
 <td>
 
-<span class="status ${statusClass}">
-${data.passport}
-</span>
+<select
+onchange="changeStatus(
+'${userDoc.id}',
+this.value
+)"
+class="status ${statusClass}">
+
+<option value="Processing"
+${data.passport==="Processing"?"selected":""}>
+Processing
+</option>
+
+<option value="Approved"
+${data.passport==="Approved"?"selected":""}>
+Approved
+</option>
+
+<option value="Rejected"
+${data.passport==="Rejected"?"selected":""}>
+Rejected
+</option>
+
+</select>
 
 </td>
 
@@ -617,6 +632,30 @@ rejected;
 
 document.getElementById("processingCount").innerText =
 processing;
+
+}
+
+window.changeStatus = async function(
+id,
+newStatus
+){
+
+await updateDoc(
+doc(db,"users",id),
+{
+passport:newStatus
+}
+);
+
+showNotification(
+"✅ Status Updated"
+);
+
+setTimeout(()=>{
+
+location.reload();
+
+},500);
 
 }
 
@@ -749,4 +788,4 @@ loadUsers();
 </script>
 
 </body>
-                  </html>
+  </html>
