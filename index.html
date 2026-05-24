@@ -25,6 +25,7 @@ justify-content:space-between;
 align-items:center;
 margin-bottom:20px;
 flex-wrap:wrap;
+gap:10px;
 }
 
 .title{
@@ -39,20 +40,19 @@ border:none;
 border-radius:8px;
 cursor:pointer;
 font-weight:bold;
+color:white;
 }
 
 .red{
 background:#d52b1e;
-color:white;
 }
 
 .gray{
-background:#ddd;
+background:#666;
 }
 
 .blue{
 background:#d52b1e;
-color:white;
 width:100%;
 margin-top:15px;
 }
@@ -141,17 +141,14 @@ background:orange;
 
 .delete{
 background:#e63946;
-color:white;
 }
 
 .edit{
 background:#ff9800;
-color:white;
 }
 
 .print{
 background:#673ab7;
-color:white;
 }
 
 #notification{
@@ -171,6 +168,10 @@ z-index:1000;
 
 .form-grid{
 grid-template-columns:1fr;
+}
+
+table{
+font-size:12px;
 }
 
 }
@@ -536,7 +537,13 @@ Print
 </button>
 
 <button
-class="btn edit">
+class="btn edit"
+onclick="editUser(
+'${data.fullname}',
+'${data.uniqueid}',
+'${data.idnumber}',
+'${data.passport}'
+)">
 Edit
 </button>
 
@@ -565,6 +572,31 @@ rejected;
 
 document.getElementById("processingCount").innerText =
 processing;
+
+}
+
+window.editUser = function(
+fullname,
+uniqueid,
+idnumber,
+passport
+){
+
+document.getElementById("fullname").value =
+fullname;
+
+document.getElementById("uniqueid").value =
+uniqueid;
+
+document.getElementById("idnumber").value =
+idnumber;
+
+document.getElementById("passport").value =
+passport;
+
+showNotification(
+"✏️ Applicant Loaded"
+);
 
 }
 
