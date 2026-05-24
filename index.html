@@ -366,9 +366,9 @@ id="passport"
 placeholder="Passport Status">
 
 <input
-type="file"
+type="text"
 id="photo"
-accept="image/*">
+placeholder="Paste Photo URL">
 
 </div>
 
@@ -518,8 +518,8 @@ document.getElementById("idnumber").value;
 const passport =
 document.getElementById("passport").value;
 
-const photoInput =
-document.getElementById("photo");
+const photo =
+document.getElementById("photo").value;
 
 if(
 fullname === "" ||
@@ -535,32 +535,6 @@ showNotification(
 return;
 
 }
-
-let photoUrl = "";
-
-if(photoInput.files.length > 0){
-
-const file = photoInput.files[0];
-
-const reader = new FileReader();
-
-reader.onload = async function(e){
-
-photoUrl = e.target.result;
-
-await saveUser(photoUrl);
-
-};
-
-reader.readAsDataURL(file);
-
-}else{
-
-await saveUser("");
-
-}
-
-async function saveUser(photo){
 
 await addDoc(collection(db,"users"),{
 
@@ -581,8 +555,6 @@ setTimeout(()=>{
 location.reload();
 
 },1000);
-
-}
 
 }
 
@@ -637,8 +609,9 @@ table.innerHTML += `
 
 <td>
 <img
-src="${data.photo || ''}"
-class="profile">
+src="${data.photo}"
+class="profile"
+onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
 </td>
 
 <td>${data.fullname}</td>
