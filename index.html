@@ -415,12 +415,35 @@ let photoUrl = "";
 
 if(photoInput.files[0]){
 
-photoUrl =
-URL.createObjectURL(
+const reader = new FileReader();
+
+reader.onload = async function(e){
+
+photoUrl = e.target.result;
+
+await addDoc(collection(db,"users"),{
+
+fullname,
+uniqueid,
+idnumber,
+passport,
+photo: photoUrl
+
+});
+
+alert("User Registered Successfully");
+
+location.reload();
+
+};
+
+reader.readAsDataURL(
 photoInput.files[0]
 );
 
-}
+return;
+
+  }
 
 if(
 fullname === "" ||
@@ -434,15 +457,6 @@ return;
 
 }
 
-await addDoc(collection(db,"users"),{
-
-fullname,
-uniqueid,
-idnumber,
-passport,
-photo: photoUrl
-
-});
 
 alert("User Registered Successfully");
 
