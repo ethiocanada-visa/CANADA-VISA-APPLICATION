@@ -9,10 +9,9 @@
 
 body{
 font-family:Arial,sans-serif;
-background:linear-gradient(135deg,#eef4ff,#f8fbff);
+background:#f4f7fb;
 margin:0;
 padding:20px;
-transition:0.3s;
 }
 
 .container{
@@ -26,29 +25,23 @@ justify-content:space-between;
 align-items:center;
 margin-bottom:20px;
 flex-wrap:wrap;
-gap:10px;
 }
 
 .title{
-color:#1f3c88;
-font-size:32px;
+font-size:30px;
 font-weight:bold;
+color:#1f3c88;
 }
 
 .btn{
-padding:10px 18px;
+padding:10px 16px;
 border:none;
 border-radius:8px;
 cursor:pointer;
 font-weight:bold;
-transition:0.3s;
 }
 
-.btn:hover{
-opacity:0.9;
-}
-
-.green{
+.red{
 background:#d52b1e;
 color:white;
 }
@@ -62,24 +55,6 @@ background:#d52b1e;
 color:white;
 width:100%;
 margin-top:15px;
-font-size:16px;
-}
-
-.delete{
-background:#e63946;
-color:white;
-}
-
-.edit{
-background:#ff9800;
-color:white;
-margin-right:5px;
-}
-
-.print{
-background:#673ab7;
-color:white;
-margin-right:5px;
 }
 
 .cards{
@@ -92,23 +67,17 @@ margin-bottom:20px;
 .card{
 background:white;
 padding:25px;
-border-radius:18px;
-box-shadow:0 6px 18px rgba(0,0,0,0.08);
-transition:0.3s;
-border-left:6px solid #d52b1e;
-}
-
-.card:hover{
-transform:translateY(-5px);
+border-radius:15px;
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
+border-left:5px solid #d52b1e;
 }
 
 .form-box{
 background:white;
 padding:25px;
-border-radius:18px;
-box-shadow:0 6px 18px rgba(0,0,0,0.08);
+border-radius:15px;
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
 margin-bottom:20px;
-transition:0.3s;
 }
 
 .form-grid{
@@ -123,7 +92,6 @@ border:1px solid #ccc;
 border-radius:8px;
 width:100%;
 box-sizing:border-box;
-font-size:15px;
 }
 
 table{
@@ -143,15 +111,20 @@ text-align:left;
 font-size:14px;
 }
 
-.status{
-padding:6px 10px;
-border-radius:6px;
-color:white;
-font-size:13px;
+.profile{
+width:60px;
+height:60px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid #d52b1e;
 }
 
-.processing{
-background:orange;
+.status{
+padding:5px 10px;
+border-radius:5px;
+color:white;
+font-size:12px;
+font-weight:bold;
 }
 
 .approved{
@@ -162,92 +135,42 @@ background:green;
 background:red;
 }
 
-.profile{
-width:55px;
-height:55px;
-border-radius:50%;
-object-fit:cover;
-border:2px solid #d52b1e;
+.processing{
+background:orange;
 }
 
-.dark{
-background:#0f172a;
+.delete{
+background:#e63946;
 color:white;
 }
 
-.dark .card,
-.dark .form-box{
-background:#1e293b;
+.edit{
+background:#ff9800;
 color:white;
 }
 
-.dark input{
-background:#0f172a;
+.print{
+background:#673ab7;
 color:white;
-border:1px solid #334155;
-}
-
-.dark table{
-color:white;
-}
-
-.dark th{
-background:#111827;
-}
-
-.dark td{
-border-bottom:1px solid #334155;
-}
-
-.dark .title{
-color:white;
-}
-
-#darkModeBtn{
-position:fixed;
-bottom:20px;
-right:20px;
-padding:12px 18px;
-border:none;
-border-radius:50px;
-background:#111;
-color:white;
-cursor:pointer;
-font-weight:bold;
-z-index:999;
 }
 
 #notification{
 position:fixed;
 top:20px;
 right:20px;
-background:#16a34a;
+background:green;
 color:white;
 padding:15px 20px;
 border-radius:10px;
-font-weight:bold;
 display:none;
+font-weight:bold;
 z-index:1000;
-box-shadow:0 4px 12px rgba(0,0,0,0.2);
 }
 
 @media(max-width:700px){
 
 .form-grid{
 grid-template-columns:1fr;
-}
-
-table{
-font-size:12px;
-}
-
-.btn{
-padding:8px 12px;
-font-size:12px;
-}
-
-.title{
-font-size:24px;
 }
 
 }
@@ -258,30 +181,15 @@ font-size:24px;
 <body>
 
 <div id="notification">
-✅ Action Completed
+Success
 </div>
-
-<button
-id="darkModeBtn"
-onclick="toggleDarkMode()">
-🌙 Dark Mode
-</button>
-
-<script>
-
-if(localStorage.getItem("adminLoggedIn") !== "true"){
-
-window.location.href = "login.html";
-
-}
-
-</script>
 
 <div class="container">
 
 <div class="header">
 
 <div>
+
 <h1 class="title">
 🇨🇦 Canada Visa Admin Dashboard
 </h1>
@@ -289,11 +197,12 @@ window.location.href = "login.html";
 <p>
 Manage applicants and passport status
 </p>
+
 </div>
 
 <div>
 
-<button class="btn green">
+<button class="btn red">
 New Applicant
 </button>
 
@@ -308,33 +217,23 @@ Logout
 <div class="cards">
 
 <div class="card">
-<h4>Total Applicants</h4>
+<h3>Total Applicants</h3>
 <h1 id="total">0</h1>
 </div>
 
 <div class="card">
-<h4>Approved</h4>
+<h3>Approved</h3>
 <h1 id="approvedCount">0</h1>
 </div>
 
 <div class="card">
-<h4>Rejected</h4>
+<h3>Rejected</h3>
 <h1 id="rejectedCount">0</h1>
 </div>
 
 <div class="card">
-<h4>Processing</h4>
+<h3>Processing</h3>
 <h1 id="processingCount">0</h1>
-</div>
-
-<div class="card">
-<h4>System Status</h4>
-<h1>Online</h1>
-</div>
-
-<div class="card">
-<h4>Last Updated</h4>
-<h1>2026</h1>
 </div>
 
 </div>
@@ -366,9 +265,9 @@ id="passport"
 placeholder="Passport Status">
 
 <input
-type="text"
+type="file"
 id="photo"
-placeholder="Paste Photo URL">
+accept="image/*">
 
 </div>
 
@@ -387,13 +286,7 @@ type="text"
 id="search"
 placeholder="Search Applicant"
 onkeyup="searchUser()"
-style="
-width:100%;
-padding:12px;
-margin-bottom:15px;
-border:1px solid #ccc;
-border-radius:8px;
-">
+style="margin-bottom:15px;">
 
 <table>
 
@@ -429,7 +322,8 @@ addDoc,
 getDocs,
 deleteDoc,
 doc
-} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+}
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
 const firebaseConfig = {
 
@@ -480,30 +374,6 @@ window.location.href = "login.html";
 
 }
 
-window.toggleDarkMode = function(){
-
-document.body.classList.toggle(
-"dark"
-);
-
-localStorage.setItem(
-"darkMode",
-document.body.classList.contains("dark")
-);
-
-}
-
-if(
-localStorage.getItem("darkMode")
-=== "true"
-){
-
-document.body.classList.add(
-"dark"
-);
-
-}
-
 window.addUser = async function(){
 
 const fullname =
@@ -518,8 +388,11 @@ document.getElementById("idnumber").value;
 const passport =
 document.getElementById("passport").value;
 
-const photo =
-document.getElementById("photo").value;
+const photoInput =
+document.getElementById("photo");
+
+const file =
+photoInput.files[0];
 
 if(
 fullname === "" ||
@@ -529,10 +402,26 @@ passport === ""
 ){
 
 showNotification(
-"⚠️ Please fill all fields"
+"⚠️ Fill all fields"
 );
 
 return;
+
+}
+
+let photoUrl = "";
+
+if(file){
+
+const reader = new FileReader();
+
+reader.readAsDataURL(file);
+
+photoUrl = await new Promise((resolve)=>{
+
+reader.onload = ()=> resolve(reader.result);
+
+});
 
 }
 
@@ -542,7 +431,7 @@ fullname: fullname,
 uniqueid: uniqueid,
 idnumber: idnumber,
 passport: passport,
-photo: photo
+photo: photoUrl
 
 });
 
@@ -568,29 +457,32 @@ document.getElementById("userdata");
 
 table.innerHTML = "";
 
-let count = 0;
+let total = 0;
 let approved = 0;
 let rejected = 0;
 let processing = 0;
 
 querySnapshot.forEach((userDoc)=>{
 
-count++;
+total++;
 
 const data = userDoc.data();
 
-const status =
-data.passport.toLowerCase();
-
 let statusClass = "processing";
 
-if(status.includes("approved")){
+if(
+data.passport.toLowerCase()
+.includes("approved")
+){
 
 approved++;
 statusClass = "approved";
 
 }
-else if(status.includes("rejected")){
+else if(
+data.passport.toLowerCase()
+.includes("rejected")
+){
 
 rejected++;
 statusClass = "rejected";
@@ -599,7 +491,6 @@ statusClass = "rejected";
 else{
 
 processing++;
-statusClass = "processing";
 
 }
 
@@ -608,10 +499,12 @@ table.innerHTML += `
 <tr>
 
 <td>
+
 <img
 src="${data.photo}"
 class="profile"
 onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
+
 </td>
 
 <td>${data.fullname}</td>
@@ -621,9 +514,11 @@ onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
 <td>${data.idnumber}</td>
 
 <td>
+
 <span class="status ${statusClass}">
 ${data.passport}
 </span>
+
 </td>
 
 <td>
@@ -641,13 +536,7 @@ Print
 </button>
 
 <button
-class="btn edit"
-onclick="editUser(
-'${data.fullname}',
-'${data.uniqueid}',
-'${data.idnumber}',
-'${data.passport}'
-)">
+class="btn edit">
 Edit
 </button>
 
@@ -666,7 +555,7 @@ Delete
 });
 
 document.getElementById("total").innerText =
-count;
+total;
 
 document.getElementById("approvedCount").innerText =
 approved;
@@ -679,91 +568,12 @@ processing;
 
 }
 
-window.printSlip = function(
-fullname,
-uniqueid,
-idnumber,
-passport,
-photo
-){
-
-const slip = window.open("","","width=600,height=700");
-
-slip.document.write(`
-
-<h2 style="text-align:center;color:#d52b1e;">
-🇨🇦 Canada Visa Application Slip
-</h2>
-
-<div style="text-align:center;">
-
-<img
-src="${photo}"
-width="120"
-height="120"
-style="
-border-radius:12px;
-object-fit:cover;
-border:3px solid #d52b1e;
-">
-
-</div>
-
-<br>
-
-<hr>
-
-<p><b>Full Name:</b> ${fullname}</p>
-
-<p><b>Unique ID:</b> ${uniqueid}</p>
-
-<p><b>ID Number:</b> ${idnumber}</p>
-
-<p><b>Passport Status:</b> ${passport}</p>
-
-<hr>
-
-<h3 style="color:green;">
-Application Received Successfully
-</h3>
-
-`);
-
-slip.print();
-
-}
-
-window.editUser = function(
-fullname,
-uniqueid,
-idnumber,
-passport
-){
-
-document.getElementById("fullname").value =
-fullname;
-
-document.getElementById("uniqueid").value =
-uniqueid;
-
-document.getElementById("idnumber").value =
-idnumber;
-
-document.getElementById("passport").value =
-passport;
-
-showNotification(
-"✏️ Applicant Loaded"
-);
-
-}
-
 window.deleteUser = async function(id){
 
 await deleteDoc(doc(db,"users",id));
 
 showNotification(
-"🗑 Applicant Deleted"
+"🗑 Deleted"
 );
 
 setTimeout(()=>{
@@ -799,6 +609,54 @@ row.style.display = "none";
 }
 
 });
+
+}
+
+window.printSlip = function(
+fullname,
+uniqueid,
+idnumber,
+passport,
+photo
+){
+
+const win = window.open("");
+
+win.document.write(`
+
+<h2>
+Canada Visa Application Slip
+</h2>
+
+<img
+src="${photo}"
+width="120"
+height="120"
+style="border-radius:10px;">
+
+<p>
+<b>Full Name:</b>
+${fullname}
+</p>
+
+<p>
+<b>Unique ID:</b>
+${uniqueid}
+</p>
+
+<p>
+<b>ID Number:</b>
+${idnumber}
+</p>
+
+<p>
+<b>Status:</b>
+${passport}
+</p>
+
+`);
+
+win.print();
 
 }
 
