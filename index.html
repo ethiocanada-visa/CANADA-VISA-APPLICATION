@@ -9,11 +9,7 @@
 
 body{
 font-family:Arial,sans-serif;
-background:linear-gradient(
-135deg,
-#eef4ff,
-#f8fbff
-);
+background:linear-gradient(135deg,#eef4ff,#f8fbff);
 margin:0;
 padding:20px;
 transition:0.3s;
@@ -233,21 +229,6 @@ font-weight:bold;
 display:none;
 z-index:1000;
 box-shadow:0 4px 12px rgba(0,0,0,0.2);
-animation:slideIn 0.4s ease;
-}
-
-@keyframes slideIn{
-
-from{
-transform:translateX(100%);
-opacity:0;
-}
-
-to{
-transform:translateX(0);
-opacity:1;
-}
-
 }
 
 @media(max-width:700px){
@@ -475,9 +456,7 @@ const db = getFirestore(app);
 window.showNotification = function(message){
 
 const notification =
-document.getElementById(
-"notification"
-);
+document.getElementById("notification");
 
 notification.innerText = message;
 
@@ -542,8 +521,6 @@ document.getElementById("passport").value;
 const photoInput =
 document.getElementById("photo");
 
-let photoUrl = "";
-
 if(
 fullname === "" ||
 uniqueid === "" ||
@@ -559,7 +536,11 @@ return;
 
 }
 
-if(photoInput.files[0]){
+let photoUrl = "";
+
+if(photoInput.files.length > 0){
+
+const file = photoInput.files[0];
 
 const reader = new FileReader();
 
@@ -567,43 +548,27 @@ reader.onload = async function(e){
 
 photoUrl = e.target.result;
 
-await addDoc(collection(db,"users"),{
-
-fullname,
-uniqueid,
-idnumber,
-passport,
-photo: photoUrl
-
-});
-
-showNotification(
-"✅ Applicant Registered"
-);
-
-setTimeout(()=>{
-
-location.reload();
-
-},1200);
+await saveUser(photoUrl);
 
 };
 
-reader.readAsDataURL(
-photoInput.files[0]
-);
+reader.readAsDataURL(file);
 
-return;
+}else{
+
+await saveUser("");
 
 }
 
+async function saveUser(photo){
+
 await addDoc(collection(db,"users"),{
 
-fullname,
-uniqueid,
-idnumber,
-passport,
-photo: ""
+fullname: fullname,
+uniqueid: uniqueid,
+idnumber: idnumber,
+passport: passport,
+photo: photo
 
 });
 
@@ -615,7 +580,9 @@ setTimeout(()=>{
 
 location.reload();
 
-},1200);
+},1000);
+
+}
 
 }
 
@@ -670,7 +637,7 @@ table.innerHTML += `
 
 <td>
 <img
-src="${data.photo}"
+src="${data.photo || ''}"
 class="profile">
 </td>
 
@@ -830,7 +797,7 @@ setTimeout(()=>{
 
 location.reload();
 
-},1200);
+},1000);
 
 }
 
