@@ -86,7 +86,7 @@ grid-template-columns:1fr 1fr;
 gap:15px;
 }
 
-input{
+input,select{
 padding:12px;
 border:1px solid #ccc;
 border-radius:8px;
@@ -149,6 +149,10 @@ background:#ff9800;
 
 .print{
 background:#673ab7;
+}
+
+.save{
+background:#16a34a;
 }
 
 #notification{
@@ -260,10 +264,25 @@ type="text"
 id="idnumber"
 placeholder="ID Number">
 
-<input
-type="text"
-id="passport"
-placeholder="Passport Status">
+<select id="passport">
+
+<option value="">
+Select Passport Status
+</option>
+
+<option value="Processing">
+Processing
+</option>
+
+<option value="Approved">
+Approved
+</option>
+
+<option value="Rejected">
+Rejected
+</option>
+
+</select>
 
 <input
 type="file"
@@ -322,7 +341,8 @@ collection,
 addDoc,
 getDocs,
 deleteDoc,
-doc
+doc,
+updateDoc
 }
 from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
@@ -375,6 +395,8 @@ window.location.href = "login.html";
 
 }
 
+let editingId = null;
+
 window.addUser = async function(){
 
 const fullname =
@@ -426,6 +448,26 @@ reader.onload = ()=> resolve(reader.result);
 
 }
 
+if(editingId){
+
+await updateDoc(doc(db,"users",editingId),{
+
+fullname: fullname,
+uniqueid: uniqueid,
+idnumber: idnumber,
+passport: passport,
+photo: photoUrl
+
+});
+
+showNotification(
+"✏️ Applicant Updated"
+);
+
+editingId = null;
+
+}else{
+
 await addDoc(collection(db,"users"),{
 
 fullname: fullname,
@@ -439,6 +481,8 @@ photo: photoUrl
 showNotification(
 "✅ Applicant Registered"
 );
+
+}
 
 setTimeout(()=>{
 
@@ -539,6 +583,7 @@ Print
 <button
 class="btn edit"
 onclick="editUser(
+'${userDoc.id}',
 '${data.fullname}',
 '${data.uniqueid}',
 '${data.idnumber}',
@@ -576,11 +621,14 @@ processing;
 }
 
 window.editUser = function(
+id,
 fullname,
 uniqueid,
 idnumber,
 passport
 ){
+
+editingId = id;
 
 document.getElementById("fullname").value =
 fullname;
@@ -656,15 +704,19 @@ const win = window.open("");
 
 win.document.write(`
 
-<h2>
-Canada Visa Application Slip
+<h2 style="color:#d52b1e;">
+🇨🇦 Canada Visa Application Slip
 </h2>
 
 <img
 src="${photo}"
 width="120"
 height="120"
-style="border-radius:10px;">
+style="
+border-radius:10px;
+object-fit:cover;
+border:2px solid #d52b1e;
+">
 
 <p>
 <b>Full Name:</b>
@@ -697,4 +749,4 @@ loadUsers();
 </script>
 
 </body>
-  </html>
+                  </html>
