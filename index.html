@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Canada Embassy Dashboard</title>
+<!-- ========= PREMIUM CANADA EMBASSY STYLE ========= -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -17,885 +11,475 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+font-family:'Inter',sans-serif;
 }
 
 body{
-background:
-linear-gradient(rgba(0,0,0,0.75),
-rgba(0,0,0,0.85)),
-url('https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=1200');
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
-color:white;
-min-height:100vh;
-padding:20px;
+background:#f4f7fb;
+display:flex;
+color:#111827;
 }
 
-.container{
-max-width:1400px;
-margin:auto;
+/* ========= SIDEBAR ========= */
+
+.sidebar{
+width:270px;
+height:100vh;
+position:fixed;
+left:0;
+top:0;
+background:linear-gradient(
+180deg,
+#ffffff,
+#edf3ff
+);
+border-right:1px solid #e5e7eb;
+overflow:hidden;
+z-index:999;
 }
+
+.sidebar::before{
+content:"";
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+height:320px;
+background:url('https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=1200');
+background-size:cover;
+background-position:center;
+opacity:0.12;
+}
+
+.logo-box{
+padding:28px 24px;
+position:relative;
+z-index:2;
+}
+
+.logo-box img{
+width:75px;
+margin-bottom:10px;
+}
+
+.logo-box h1{
+font-size:42px;
+font-weight:800;
+color:#111827;
+line-height:1;
+}
+
+.logo-box p{
+font-size:13px;
+color:#6b7280;
+margin-top:10px;
+line-height:1.6;
+}
+
+.menu{
+padding:0 18px;
+position:relative;
+z-index:2;
+}
+
+.menu a{
+display:flex;
+align-items:center;
+gap:14px;
+padding:16px 18px;
+border-radius:16px;
+text-decoration:none;
+color:#0b2c5f;
+font-size:15px;
+font-weight:600;
+margin-bottom:10px;
+transition:.3s;
+}
+
+.menu a:hover{
+background:#eef2ff;
+}
+
+.menu .active{
+background:linear-gradient(
+90deg,
+#d52b1e,
+#ff3b30
+);
+color:white;
+box-shadow:0 10px 20px rgba(213,43,30,0.25);
+}
+
+/* ========= MAIN ========= */
+
+.main{
+margin-left:270px;
+width:calc(100% - 270px);
+padding:25px;
+}
+
+/* ========= TOPBAR ========= */
 
 .topbar{
 display:flex;
 justify-content:space-between;
 align-items:center;
+gap:20px;
 flex-wrap:wrap;
-gap:15px;
 margin-bottom:25px;
 }
 
-.logo{
+.title-area{
+display:flex;
+align-items:center;
+gap:16px;
+}
+
+.title-area img{
+width:60px;
+}
+
+.title-area h1{
+font-size:42px;
+font-weight:800;
+color:#0b2c5f;
+}
+
+.title-area p{
+font-size:15px;
+color:#6b7280;
+margin-top:6px;
+}
+
+.top-actions{
 display:flex;
 align-items:center;
 gap:15px;
+flex-wrap:wrap;
 }
 
-.logo img{
-width:60px;
-border-radius:10px;
-}
-
-.logo h1{
-font-size:34px;
-font-weight:700;
-}
-
-.logo p{
-color:#ddd;
-font-size:14px;
-}
-
-.logout-btn{
-background:#d52b1e;
-border:none;
-padding:14px 22px;
-border-radius:14px;
-color:white;
-font-weight:600;
-cursor:pointer;
-font-size:15px;
-box-shadow:0 0 20px rgba(213,43,30,0.5);
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:20px;
-margin-bottom:25px;
-}
-
-.card{
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(18px);
-padding:25px;
-border-radius:25px;
-border:1px solid rgba(255,255,255,0.12);
-box-shadow:0 8px 30px rgba(0,0,0,0.25);
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-}
-
-.card h3{
-color:#ddd;
-margin-bottom:12px;
-font-size:18px;
-}
-
-.card h1{
-font-size:48px;
-font-weight:700;
-}
-
-.form-box,
-.table-box{
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(18px);
-padding:25px;
-border-radius:25px;
-border:1px solid rgba(255,255,255,0.12);
-box-shadow:0 8px 30px rgba(0,0,0,0.25);
-margin-bottom:25px;
-overflow:auto;
-}
-
-.form-box h2,
-.table-box h2{
-margin-bottom:20px;
-font-size:28px;
-}
-
-.form-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:18px;
-}
-
-input,
-select{
-width:100%;
-padding:16px;
-border:none;
+.search-box{
+background:white;
+padding:14px 18px;
 border-radius:16px;
-background:rgba(255,255,255,0.12);
-color:white;
+border:1px solid #e5e7eb;
+width:320px;
 font-size:15px;
 outline:none;
 }
 
-input::placeholder{
-color:#ddd;
+.admin-box{
+background:white;
+padding:10px 16px;
+border-radius:18px;
+display:flex;
+align-items:center;
+gap:12px;
+box-shadow:0 4px 15px rgba(0,0,0,0.05);
 }
 
-select option{
-color:black;
+.admin-box img{
+width:50px;
+height:50px;
+border-radius:50%;
+object-fit:cover;
 }
 
-input[type="file"]{
-padding:12px;
+.admin-box h4{
+font-size:16px;
+}
+
+.admin-box p{
+font-size:13px;
+color:#16a34a;
+}
+
+/* ========= STATS ========= */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:22px;
+margin-bottom:25px;
+}
+
+.card{
+background:white;
+padding:28px;
+border-radius:24px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 6px 18px rgba(0,0,0,0.05);
+border:1px solid #eef2f7;
+}
+
+.card h3{
+font-size:16px;
+color:#6b7280;
+margin-bottom:10px;
+}
+
+.card h1{
+font-size:46px;
+font-weight:800;
+color:#0b2c5f;
+}
+
+.card p{
+font-size:14px;
+color:#9ca3af;
+margin-top:10px;
+}
+
+.icon{
+width:78px;
+height:78px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:34px;
+font-weight:800;
+}
+
+.blue{
+background:#eef2ff;
+color:#3b82f6;
+}
+
+.green{
+background:#ecfdf3;
+color:#16a34a;
+}
+
+.red{
+background:#fef2f2;
+color:#dc2626;
+}
+
+.orange{
+background:#fff7ed;
+color:#f59e0b;
+}
+
+/* ========= SECTION ========= */
+
+.section{
+background:white;
+border-radius:24px;
+padding:28px;
+box-shadow:0 6px 18px rgba(0,0,0,0.05);
+margin-bottom:25px;
+border:1px solid #eef2f7;
+}
+
+.section-title{
+font-size:30px;
+font-weight:800;
+color:#0b2c5f;
+margin-bottom:25px;
+}
+
+/* ========= FORM ========= */
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.input-group{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.input-group label{
+font-size:14px;
+font-weight:700;
+color:#374151;
+}
+
+input,
+select{
+padding:16px;
+border-radius:14px;
+border:1px solid #d1d5db;
+font-size:15px;
+outline:none;
+background:white;
+transition:.3s;
+}
+
+input:focus,
+select:focus{
+border-color:#3b82f6;
+box-shadow:0 0 0 4px rgba(59,130,246,0.08);
 }
 
 .register-btn{
-width:100%;
-margin-top:20px;
-padding:16px;
+margin-top:22px;
+background:linear-gradient(
+90deg,
+#d52b1e,
+#ff3b30
+);
 border:none;
+width:100%;
+padding:17px;
 border-radius:16px;
-background:linear-gradient(90deg,#d52b1e,#ff4d4d);
 color:white;
 font-size:17px;
-font-weight:700;
+font-weight:800;
 cursor:pointer;
-box-shadow:0 0 20px rgba(213,43,30,0.4);
+box-shadow:0 10px 25px rgba(213,43,30,0.25);
 }
 
-.search-box{
+/* ========= TABLE ========= */
+
+.table-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:15px;
 margin-bottom:20px;
+}
+
+.table-search{
+padding:14px 18px;
+border-radius:14px;
+border:1px solid #d1d5db;
+width:280px;
+outline:none;
+}
+
+.table-wrap{
+overflow:auto;
 }
 
 table{
 width:100%;
 border-collapse:collapse;
-min-width:900px;
+min-width:1100px;
+}
+
+thead{
+background:#0b2c5f;
+color:white;
 }
 
 th{
 padding:18px;
-background:rgba(255,255,255,0.12);
-font-size:15px;
+text-align:left;
+font-size:14px;
 }
 
 td{
 padding:18px;
-border-bottom:1px solid rgba(255,255,255,0.08);
+border-bottom:1px solid #eef2f7;
 font-size:14px;
 }
 
 .profile{
 width:70px;
 height:70px;
-border-radius:20px;
+border-radius:18px;
 object-fit:cover;
-border:3px solid #ff4d4d;
+border:3px solid #d52b1e;
 }
 
 .status{
-padding:10px 15px;
+padding:10px 14px;
 border:none;
 border-radius:12px;
+font-size:13px;
 font-weight:700;
 color:white;
-cursor:pointer;
 }
 
 .processing{
-background:#ff9800;
+background:#f59e0b;
 }
 
 .approved{
-background:#0f9d58;
+background:#16a34a;
 }
 
 .rejected{
-background:#e53935;
+background:#dc2626;
 }
 
 .action-btn{
 padding:10px 14px;
 border:none;
 border-radius:12px;
-color:white;
+font-size:13px;
+font-weight:700;
 cursor:pointer;
-font-weight:600;
+color:white;
 margin:2px;
 }
 
 .print{
-background:#7b2cbf;
+background:#7c3aed;
 }
 
 .edit{
-background:#ff9800;
+background:#f59e0b;
 }
 
 .delete{
-background:#e53935;
+background:#dc2626;
 }
+
+/* ========= NOTIFICATION ========= */
 
 #notification{
 position:fixed;
 top:20px;
 right:20px;
-background:#0f9d58;
+background:#16a34a;
+color:white;
 padding:16px 24px;
-border-radius:16px;
+border-radius:14px;
 display:none;
-font-weight:600;
-z-index:999;
-box-shadow:0 0 20px rgba(15,157,88,0.5);
+font-weight:700;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+z-index:99999;
 }
 
-.footer{
-text-align:center;
-margin-top:20px;
-color:#ddd;
-font-size:14px;
+/* ========= MOBILE ========= */
+
+@media(max-width:1000px){
+
+.sidebar{
+display:none;
 }
 
-@media(max-width:900px){
+.main{
+margin-left:0;
+width:100%;
+padding:15px;
+}
 
 .form-grid{
 grid-template-columns:1fr;
 }
 
-.logo h1{
-font-size:24px;
+.title-area h1{
+font-size:28px;
 }
 
-.card h1{
-font-size:38px;
+.search-box{
+width:100%;
 }
 
+.cards{
+grid-template-columns:1fr;
 }
-
-</style>
-</head>
-
-<body>
-
-<div id="notification"></div>
-
-<div class="container">
-
-<div class="topbar">
-
-<div class="logo">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg">
-
-<div>
-
-<h1>
-Canada Embassy
-</h1>
-
-<p>
-Immigration • Visa • Citizenship
-</p>
-
-</div>
-
-</div>
-
-<button class="logout-btn" onclick="logout()">
-Logout
-</button>
-
-</div>
-
-<div class="cards">
-
-<div class="card">
-<h3>Total Applicants</h3>
-<h1 id="total">0</h1>
-</div>
-
-<div class="card">
-<h3>Approved</h3>
-<h1 id="approvedCount">0</h1>
-</div>
-
-<div class="card">
-<h3>Rejected</h3>
-<h1 id="rejectedCount">0</h1>
-</div>
-
-<div class="card">
-<h3>Processing</h3>
-<h1 id="processingCount">0</h1>
-</div>
-
-</div>
-
-<div class="form-box">
-
-<h2>
-Register Applicant
-</h2>
-
-<div class="form-grid">
-
-<input
-type="text"
-id="fullname"
-placeholder="Full Name">
-
-<input
-type="text"
-id="uniqueid"
-placeholder="Unique ID">
-
-<input
-type="text"
-id="idnumber"
-placeholder="ID Number">
-
-<select id="passport">
-
-<option value="">
-Select Passport Status
-</option>
-
-<option value="Processing">
-Processing
-</option>
-
-<option value="Approved">
-Approved
-</option>
-
-<option value="Rejected">
-Rejected
-</option>
-
-</select>
-
-<input
-type="file"
-id="photo"
-accept="image/*">
-
-</div>
-
-<button class="register-btn" onclick="addUser()">
-Register User
-</button>
-
-</div>
-
-<div class="table-box">
-
-<h2>
-Registered Applicants
-</h2>
-
-<div class="search-box">
-
-<input
-type="text"
-id="search"
-placeholder="Search applicant..."
-onkeyup="searchUser()">
-
-</div>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Photo</th>
-<th>Name</th>
-<th>Unique ID</th>
-<th>ID Number</th>
-<th>Status</th>
-<th>Action</th>
-
-</tr>
-
-</thead>
-
-<tbody id="userdata"></tbody>
-
-</table>
-
-</div>
-
-<div class="footer">
-
-© 2026 Canada Immigration System
-
-</div>
-
-</div>
-
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-
-import {
-getFirestore,
-collection,
-addDoc,
-getDocs,
-deleteDoc,
-doc,
-updateDoc
-}
-from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
-
-const firebaseConfig = {
-
-apiKey: "AIzaSyDMOQzKuw8IVrq0kh35tNC-P6PuiHlIA-g",
-
-authDomain: "canada-visa-system-f9c45.firebaseapp.com",
-
-projectId: "canada-visa-system-f9c45",
-
-storageBucket: "canada-visa-system-f9c45.firebasestorage.app",
-
-messagingSenderId: "772100856692",
-
-appId: "1:772100856692:web:8e73ad0fe503b24342ea21",
-
-measurementId: "G-046K5CHHJV"
-
-};
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
-let editingId = null;
-
-window.showNotification = function(message){
-
-const n =
-document.getElementById("notification");
-
-n.innerText = message;
-
-n.style.display = "block";
-
-setTimeout(()=>{
-
-n.style.display = "none";
-
-},3000);
 
 }
 
-window.logout = function(){
-
-localStorage.removeItem(
-"adminLoggedIn"
-);
-
-window.location.href = "login.html";
-
-}
-
-window.addUser = async function(){
-
-const fullname =
-document.getElementById("fullname").value;
-
-const uniqueid =
-document.getElementById("uniqueid").value;
-
-const idnumber =
-document.getElementById("idnumber").value;
-
-const passport =
-document.getElementById("passport").value;
-
-const photoInput =
-document.getElementById("photo");
-
-const file =
-photoInput.files[0];
-
-if(
-fullname==="" ||
-uniqueid==="" ||
-idnumber==="" ||
-passport===""
-){
-
-showNotification(
-"Fill all fields"
-);
-
-return;
-
-}
-
-let photoUrl = "";
-
-if(file){
-
-const reader =
-new FileReader();
-
-reader.readAsDataURL(file);
-
-photoUrl =
-await new Promise((resolve)=>{
-
-reader.onload = ()=>
-resolve(reader.result);
-
-});
-
-}
-
-if(editingId){
-
-await updateDoc(
-doc(db,"users",editingId),
-{
-fullname,
-uniqueid,
-idnumber,
-passport,
-photo:photoUrl
-}
-);
-
-showNotification(
-"Applicant Updated"
-);
-
-editingId = null;
-
-}else{
-
-await addDoc(
-collection(db,"users"),
-{
-fullname,
-uniqueid,
-idnumber,
-passport,
-photo:photoUrl
-}
-);
-
-showNotification(
-"Applicant Registered"
-);
-
-}
-
-setTimeout(()=>{
-
-location.reload();
-
-},1000);
-
-}
-
-async function loadUsers(){
-
-const querySnapshot =
-await getDocs(
-collection(db,"users")
-);
-
-const table =
-document.getElementById("userdata");
-
-table.innerHTML = "";
-
-let total=0;
-let approved=0;
-let rejected=0;
-let processing=0;
-
-querySnapshot.forEach((userDoc)=>{
-
-total++;
-
-const data = userDoc.data();
-
-let statusClass="processing";
-
-if(data.passport==="Approved"){
-
-approved++;
-statusClass="approved";
-
-}else if(data.passport==="Rejected"){
-
-rejected++;
-statusClass="rejected";
-
-}else{
-
-processing++;
-
-}
-
-table.innerHTML += `
-
-<tr>
-
-<td>
-
-<img
-src="${data.photo}"
-class="profile"
-onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
-
-</td>
-
-<td>${data.fullname}</td>
-
-<td>${data.uniqueid}</td>
-
-<td>${data.idnumber}</td>
-
-<td>
-
-<select
-class="status ${statusClass}"
-onchange="changeStatus(
-'${userDoc.id}',
-this.value
-)">
-
-<option value="Processing"
-${data.passport==="Processing"?"selected":""}>
-Processing
-</option>
-
-<option value="Approved"
-${data.passport==="Approved"?"selected":""}>
-Approved
-</option>
-
-<option value="Rejected"
-${data.passport==="Rejected"?"selected":""}>
-Rejected
-</option>
-
-</select>
-
-</td>
-
-<td>
-
-<button
-class="action-btn print"
-onclick="printSlip(
-'${data.fullname}',
-'${data.uniqueid}',
-'${data.idnumber}',
-'${data.passport}',
-'${data.photo}'
-)">
-Print
-</button>
-
-<button
-class="action-btn edit"
-onclick="editUser(
-'${userDoc.id}',
-'${data.fullname}',
-'${data.uniqueid}',
-'${data.idnumber}',
-'${data.passport}'
-)">
-Edit
-</button>
-
-<button
-class="action-btn delete"
-onclick="deleteUser('${userDoc.id}')">
-Delete
-</button>
-
-</td>
-
-</tr>
-
-`;
-
-});
-
-document.getElementById("total").innerText=total;
-document.getElementById("approvedCount").innerText=approved;
-document.getElementById("rejectedCount").innerText=rejected;
-document.getElementById("processingCount").innerText=processing;
-
-}
-
-window.changeStatus = async function(
-id,
-newStatus
-){
-
-await updateDoc(
-doc(db,"users",id),
-{
-passport:newStatus
-}
-);
-
-showNotification(
-"Status Updated"
-);
-
-setTimeout(()=>{
-
-location.reload();
-
-},500);
-
-}
-
-window.editUser = function(
-id,
-fullname,
-uniqueid,
-idnumber,
-passport
-){
-
-editingId=id;
-
-document.getElementById("fullname").value=fullname;
-
-document.getElementById("uniqueid").value=uniqueid;
-
-document.getElementById("idnumber").value=idnumber;
-
-document.getElementById("passport").value=passport;
-
-showNotification(
-"Applicant Loaded"
-);
-
-}
-
-window.deleteUser = async function(id){
-
-await deleteDoc(
-doc(db,"users",id)
-);
-
-showNotification(
-"Applicant Deleted"
-);
-
-setTimeout(()=>{
-
-location.reload();
-
-},1000);
-
-}
-
-window.searchUser = function(){
-
-const input =
-document.getElementById("search")
-.value.toLowerCase();
-
-const rows =
-document.querySelectorAll("#userdata tr");
-
-rows.forEach((row)=>{
-
-const text =
-row.innerText.toLowerCase();
-
-row.style.display =
-text.includes(input)
-? ""
-: "none";
-
-});
-
-}
-
-window.printSlip = function(
-fullname,
-uniqueid,
-idnumber,
-passport,
-photo
-){
-
-const win = window.open("");
-
-win.document.write(`
-
-<div style="
-font-family:Poppins;
-padding:30px;
-">
-
-<h1 style="
-color:#d52b1e;
-">
-🇨🇦 Canada Visa Slip
-</h1>
-
-<img
-src="${photo}"
-width="120"
-height="120"
-style="
-border-radius:20px;
-object-fit:cover;
-border:4px solid #d52b1e;
-">
-
-<h2>${fullname}</h2>
-
-<p>
-<b>Unique ID:</b>
-${uniqueid}
-</p>
-
-<p>
-<b>ID Number:</b>
-${idnumber}
-</p>
-
-<p>
-<b>Status:</b>
-${passport}
-</p>
-
-</div>
-
-`);
-
-win.print();
-
-}
-
-loadUsers();
-
-</script>
-
-</body>
-  </html>
+  </style>
