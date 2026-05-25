@@ -1,345 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Canada Visa Admin Dashboard</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Canada Visa Dashboard</title>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
-
 body{
+margin:0;
+font-family:Arial;
 background:#f4f7fb;
 display:flex;
-color:#111827;
-}
-
-/* ===== SIDEBAR ===== */
-
-.sidebar{
-width:260px;
-height:100vh;
-background:white;
-position:fixed;
-left:0;
-top:0;
-border-right:1px solid #e5e7eb;
-padding:25px 18px;
-overflow:auto;
-}
-
-.logo{
-display:flex;
-align-items:center;
-gap:12px;
-margin-bottom:35px;
-}
-
-.logo img{
-width:55px;
-}
-
-.logo h2{
-font-size:28px;
-font-weight:800;
-color:#0b2c5f;
-}
-
-.menu a{
-display:block;
-padding:15px 18px;
-margin-bottom:12px;
-border-radius:14px;
-text-decoration:none;
-font-weight:600;
-color:#0b2c5f;
-transition:.3s;
-}
-
-.menu a:hover{
-background:#eef2ff;
-}
-
-.menu .active{
-background:linear-gradient(
-90deg,
-#d52b1e,
-#ff3b30
-);
-color:white;
-}
-
-/* ===== MAIN ===== */
-
-.main{
-margin-left:260px;
-width:calc(100% - 260px);
-padding:25px;
-}
-
-/* ===== TOP ===== */
-
-.topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-flex-wrap:wrap;
-gap:15px;
-margin-bottom:25px;
-}
-
-.topbar h1{
-font-size:38px;
-font-weight:800;
-color:#0b2c5f;
-}
-
-.topbar p{
-margin-top:6px;
-color:#6b7280;
-}
-
-.admin{
-display:flex;
-align-items:center;
-gap:12px;
-background:white;
-padding:10px 16px;
-border-radius:16px;
-box-shadow:0 4px 15px rgba(0,0,0,0.05);
-}
-
-.admin img{
-width:50px;
-height:50px;
-border-radius:50%;
-object-fit:cover;
-}
-
-/* ===== CARDS ===== */
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:20px;
-margin-bottom:25px;
-}
-
-.card{
-background:white;
-padding:25px;
-border-radius:22px;
-box-shadow:0 6px 18px rgba(0,0,0,0.05);
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.card h3{
-font-size:15px;
-color:#6b7280;
-margin-bottom:10px;
-}
-
-.card h1{
-font-size:44px;
-font-weight:800;
-color:#0b2c5f;
-}
-
-.icon{
-width:70px;
-height:70px;
-border-radius:50%;
-display:flex;
-align-items:center;
 justify-content:center;
-font-size:32px;
-font-weight:700;
-}
-
-.blue{
-background:#eef2ff;
-color:#3b82f6;
-}
-
-.green{
-background:#ecfdf3;
-color:#16a34a;
-}
-
-.red{
-background:#fef2f2;
-color:#dc2626;
-}
-
-.orange{
-background:#fff7ed;
-color:#f59e0b;
-}
-
-/* ===== SECTION ===== */
-
-.section{
-background:white;
-padding:28px;
-border-radius:22px;
-box-shadow:0 6px 18px rgba(0,0,0,0.05);
-margin-bottom:25px;
-}
-
-.section-title{
-font-size:28px;
-font-weight:800;
-margin-bottom:25px;
-color:#0b2c5f;
-}
-
-/* ===== FORM ===== */
-
-.form-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-}
-
-.input-group{
-display:flex;
-flex-direction:column;
-gap:8px;
-}
-
-.input-group label{
-font-size:14px;
-font-weight:700;
-}
-
-input,
-select{
-padding:15px;
-border-radius:14px;
-border:1px solid #d1d5db;
-font-size:15px;
-outline:none;
-}
-
-button{
-cursor:pointer;
-}
-
-.register-btn{
-margin-top:20px;
-width:100%;
-padding:16px;
-border:none;
-border-radius:14px;
-background:linear-gradient(
-90deg,
-#d52b1e,
-#ff3b30
-);
-color:white;
-font-size:16px;
-font-weight:700;
-}
-
-/* ===== TABLE ===== */
-
-.table-header{
-display:flex;
-justify-content:space-between;
 align-items:center;
-margin-bottom:20px;
-flex-wrap:wrap;
-gap:15px;
+height:100vh;
 }
 
-.search{
-padding:14px 16px;
-border-radius:14px;
-border:1px solid #d1d5db;
-width:280px;
+.box{
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+text-align:center;
 }
 
-.table-wrap{
-overflow:auto;
+h1{
+color:#d52b1e;
 }
 
-table{
-width:100%;
-border-collapse:collapse;
-min-width:1000px;
+p{
+color:#555;
 }
 
-thead{
-background:#0b2c5f;
-color:white;
-}
+</style>
+</head>
 
-th{
-padding:18px;
-font-size:14px;
-text-align:left;
-}
+<body>
 
-td{
-padding:18px;
-border-bottom:1px solid #eef2f7;
-font-size:14px;
-}
+<div class="box">
 
-.profile{
-width:65px;
-height:65px;
-border-radius:16px;
-object-fit:cover;
-border:3px solid #d52b1e;
-}
+<h1>
+Canada Visa Dashboard
+</h1>
 
-.status{
-padding:10px 14px;
-border-radius:12px;
-font-size:13px;
-font-weight:700;
-color:white;
-border:none;
-}
+<p>
+Website is working successfully 🇨🇦
+</p>
 
-.processing{
-background:#f59e0b;
-}
+</div>
 
-.approved{
-background:#16a34a;
-}
-
-.rejected{
-background:#dc2626;
-}
-
-.action-btn{
-padding:10px 14px;
-border:none;
-border-radius:12px;
-font-size:13px;
-font-weight:700;
-color:white;
-margin:2px;
-}
-
-.print{
-background:#7c3aed;
-}
+</body>
+</html>
