@@ -1,171 +1,324 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Canada Visa Admin Dashboard</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
+/* ========= MODERN CANADA EMBASSY UI ========= */
 
 body{
-background:#f4f7fb;
-color:#1a1a1a;
+background:#f5f7fb;
+font-family:'Inter',sans-serif;
+margin:0;
+padding:0;
+display:flex;
 }
 
-.header{
-background:#ffffff;
-padding:20px 30px;
+/* ========= SIDEBAR ========= */
+
+.sidebar{
+width:260px;
+height:100vh;
+background:linear-gradient(
+180deg,
+#ffffff,
+#eef3ff
+);
+position:fixed;
+left:0;
+top:0;
+border-right:1px solid #e5e7eb;
+overflow:hidden;
+}
+
+.sidebar::before{
+content:"";
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+height:280px;
+background:url('https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=1200');
+background-size:cover;
+background-position:center;
+opacity:0.15;
+}
+
+.logo-box{
+padding:25px;
+position:relative;
+z-index:2;
+}
+
+.logo-box img{
+width:70px;
+}
+
+.logo-box h2{
+font-size:38px;
+color:#111827;
+margin-top:10px;
+margin-bottom:5px;
+}
+
+.logo-box p{
+font-size:13px;
+color:#6b7280;
+line-height:1.5;
+}
+
+.menu{
+padding:10px 18px;
+position:relative;
+z-index:2;
+}
+
+.menu a{
+display:flex;
+align-items:center;
+gap:14px;
+padding:15px 18px;
+margin-bottom:10px;
+border-radius:14px;
+text-decoration:none;
+font-weight:600;
+font-size:15px;
+color:#0b2c5f;
+transition:.3s;
+}
+
+.menu a:hover{
+background:#eef2ff;
+}
+
+.menu .active{
+background:linear-gradient(
+90deg,
+#d52b1e,
+#ff3b30
+);
+color:white;
+box-shadow:0 8px 20px rgba(213,43,30,0.25);
+}
+
+/* ========= MAIN ========= */
+
+.main{
+margin-left:260px;
+width:calc(100% - 260px);
+padding:25px;
+}
+
+/* ========= TOPBAR ========= */
+
+.topbar{
 display:flex;
 justify-content:space-between;
 align-items:center;
-border-bottom:1px solid #e5e7eb;
-position:sticky;
-top:0;
-z-index:1000;
+margin-bottom:25px;
+flex-wrap:wrap;
+gap:15px;
 }
 
-.logo{
+.title-box{
 display:flex;
 align-items:center;
 gap:15px;
 }
 
-.logo img{
-width:55px;
-height:55px;
-object-fit:cover;
-border-radius:10px;
+.title-box img{
+width:60px;
 }
 
-.logo h1{
-font-size:28px;
+.title-box h1{
+font-size:42px;
 color:#0b2c5f;
-font-weight:700;
+margin-bottom:5px;
 }
 
-.logo p{
-font-size:13px;
+.title-box p{
 color:#6b7280;
-margin-top:4px;
+font-size:15px;
 }
 
-.logout-btn{
-background:#d52b1e;
-color:white;
-border:none;
+.top-actions{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.search{
+background:white;
 padding:12px 18px;
-border-radius:10px;
-font-weight:600;
-cursor:pointer;
+border-radius:14px;
+border:1px solid #e5e7eb;
+width:280px;
+outline:none;
+font-size:15px;
 }
 
-.container{
-max-width:1450px;
-margin:auto;
-padding:30px 20px;
+.admin-box{
+display:flex;
+align-items:center;
+gap:12px;
+background:white;
+padding:10px 16px;
+border-radius:14px;
+box-shadow:0 4px 12px rgba(0,0,0,0.05);
 }
+
+.admin-box img{
+width:48px;
+height:48px;
+border-radius:50%;
+object-fit:cover;
+}
+
+/* ========= CARDS ========= */
 
 .cards{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-margin-bottom:30px;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:22px;
+margin-bottom:25px;
 }
 
 .card{
 background:white;
-padding:25px;
-border-radius:18px;
-box-shadow:0 4px 15px rgba(0,0,0,0.05);
-border-left:5px solid #d52b1e;
+padding:28px;
+border-radius:22px;
+box-shadow:0 6px 20px rgba(0,0,0,0.06);
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .card h3{
-font-size:15px;
+font-size:16px;
 color:#6b7280;
-margin-bottom:12px;
+margin-bottom:10px;
 }
 
 .card h1{
-font-size:40px;
+font-size:44px;
 color:#0b2c5f;
 }
 
-.section{
-background:white;
-padding:25px;
-border-radius:18px;
-box-shadow:0 4px 15px rgba(0,0,0,0.05);
-margin-bottom:30px;
+.icon{
+width:70px;
+height:70px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:32px;
+font-weight:700;
 }
 
-.section h2{
-margin-bottom:20px;
-font-size:28px;
+.blue{
+background:#eef2ff;
+color:#3b82f6;
+}
+
+.green{
+background:#ecfdf3;
+color:#16a34a;
+}
+
+.red{
+background:#fef2f2;
+color:#dc2626;
+}
+
+.orange{
+background:#fff7ed;
+color:#f59e0b;
+}
+
+/* ========= FORM ========= */
+
+.section{
+background:white;
+padding:28px;
+border-radius:22px;
+box-shadow:0 6px 20px rgba(0,0,0,0.06);
+margin-bottom:25px;
+}
+
+.section-title{
+font-size:30px;
+margin-bottom:22px;
 color:#0b2c5f;
 }
 
 .form-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:18px;
+gap:20px;
+}
+
+.input-group{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.input-group label{
+font-weight:600;
+color:#374151;
 }
 
 input,
 select{
-width:100%;
-padding:15px;
+padding:16px;
 border:1px solid #d1d5db;
-border-radius:12px;
+border-radius:14px;
 font-size:15px;
 outline:none;
-background:#fff;
+background:white;
 }
 
 input:focus,
 select:focus{
-border-color:#0b2c5f;
-}
-
-input[type="file"]{
-padding:10px;
+border-color:#3b82f6;
 }
 
 .register-btn{
 margin-top:20px;
-width:100%;
-padding:15px;
-background:#d52b1e;
-border:none;
-border-radius:12px;
+background:linear-gradient(
+90deg,
+#d52b1e,
+#ff3b30
+);
 color:white;
-font-size:16px;
+padding:16px;
+width:100%;
+border:none;
+border-radius:14px;
+font-size:17px;
 font-weight:700;
 cursor:pointer;
+box-shadow:0 10px 20px rgba(213,43,30,0.25);
 }
 
-.search-box{
+/* ========= TABLE ========= */
+
+.table-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
 margin-bottom:20px;
+flex-wrap:wrap;
+gap:15px;
+}
+
+.table-search{
+padding:13px 16px;
+border:1px solid #d1d5db;
+border-radius:14px;
+width:280px;
 }
 
 table{
 width:100%;
 border-collapse:collapse;
-min-width:950px;
+min-width:1000px;
 }
 
 thead{
@@ -174,31 +327,32 @@ color:white;
 }
 
 th{
-padding:16px;
-text-align:left;
+padding:18px;
 font-size:14px;
+text-align:left;
 }
 
 td{
-padding:16px;
+padding:18px;
 border-bottom:1px solid #e5e7eb;
 font-size:14px;
 }
 
 .profile{
-width:70px;
-height:70px;
-border-radius:14px;
+width:65px;
+height:65px;
+border-radius:16px;
 object-fit:cover;
-border:2px solid #d52b1e;
+border:3px solid #d52b1e;
 }
 
-.status-select{
-padding:10px;
-border:none;
-border-radius:10px;
-font-weight:600;
+.status{
+padding:10px 14px;
+border-radius:12px;
+font-size:13px;
+font-weight:700;
 color:white;
+border:none;
 }
 
 .processing{
@@ -216,16 +370,16 @@ background:#dc2626;
 .action-btn{
 padding:10px 14px;
 border:none;
-border-radius:10px;
-color:white;
+border-radius:12px;
 font-size:13px;
 font-weight:600;
 cursor:pointer;
+color:white;
 margin:2px;
 }
 
 .print{
-background:#6d28d9;
+background:#7c3aed;
 }
 
 .edit{
@@ -236,663 +390,27 @@ background:#f59e0b;
 background:#dc2626;
 }
 
-#notification{
-position:fixed;
-top:20px;
-right:20px;
-background:#16a34a;
-color:white;
-padding:16px 24px;
-border-radius:12px;
+/* ========= MOBILE ========= */
+
+@media(max-width:1000px){
+
+.sidebar{
 display:none;
-font-weight:600;
-z-index:9999;
 }
 
-.footer{
-text-align:center;
-padding:20px;
-color:#6b7280;
-font-size:14px;
+.main{
+margin-left:0;
+width:100%;
 }
-
-@media(max-width:900px){
 
 .form-grid{
 grid-template-columns:1fr;
 }
 
-.logo h1{
-font-size:22px;
-}
-
-.card h1{
-font-size:32px;
-}
-
-.header{
-padding:18px;
+.title-box h1{
+font-size:30px;
 }
 
 }
 
-</style>
-</head>
-
-<body>
-
-<div id="notification"></div>
-
-<div class="header">
-
-<div class="logo">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg">
-
-<div>
-
-<h1>
-Canada Visa Admin Dashboard
-</h1>
-
-<p>
-Immigration • Refugees • Citizenship Canada
-</p>
-
-</div>
-
-</div>
-
-<button class="logout-btn" onclick="logout()">
-Logout
-</button>
-
-</div>
-
-<div class="container">
-
-<div class="cards">
-
-<div class="card">
-<h3>Total Applicants</h3>
-<h1 id="total">0</h1>
-</div>
-
-<div class="card">
-<h3>Approved</h3>
-<h1 id="approvedCount">0</h1>
-</div>
-
-<div class="card">
-<h3>Rejected</h3>
-<h1 id="rejectedCount">0</h1>
-</div>
-
-<div class="card">
-<h3>Processing</h3>
-<h1 id="processingCount">0</h1>
-</div>
-
-</div>
-
-<div class="section">
-
-<h2>
-Register Applicant
-</h2>
-
-<div class="form-grid">
-
-<input
-type="text"
-id="fullname"
-placeholder="Full Name">
-
-<input
-type="text"
-id="uniqueid"
-placeholder="Unique ID">
-
-<input
-type="text"
-id="idnumber"
-placeholder="ID Number">
-
-<select id="passport">
-
-<option value="">
-Select Passport Status
-</option>
-
-<option value="Processing">
-Processing
-</option>
-
-<option value="Approved">
-Approved
-</option>
-
-<option value="Rejected">
-Rejected
-</option>
-
-</select>
-
-<input
-type="file"
-id="photo"
-accept="image/*">
-
-</div>
-
-<button class="register-btn" onclick="addUser()">
-Register User
-</button>
-
-</div>
-
-<div class="section">
-
-<h2>
-Registered Applicants
-</h2>
-
-<div class="search-box">
-
-<input
-type="text"
-id="search"
-placeholder="Search applicant..."
-onkeyup="searchUser()">
-
-</div>
-
-<div style="overflow:auto;">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Photo</th>
-<th>Name</th>
-<th>Unique ID</th>
-<th>ID Number</th>
-<th>Status</th>
-<th>Action</th>
-
-</tr>
-
-</thead>
-
-<tbody id="userdata"></tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="footer">
-
-© 2026 Government of Canada — Visa Management System
-
-</div>
-
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-
-import {
-getFirestore,
-collection,
-addDoc,
-getDocs,
-deleteDoc,
-doc,
-updateDoc
-}
-from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
-
-const firebaseConfig = {
-
-apiKey: "AIzaSyDMOQzKuw8IVrq0kh35tNC-P6PuiHlIA-g",
-
-authDomain: "canada-visa-system-f9c45.firebaseapp.com",
-
-projectId: "canada-visa-system-f9c45",
-
-storageBucket: "canada-visa-system-f9c45.firebasestorage.app",
-
-messagingSenderId: "772100856692",
-
-appId: "1:772100856692:web:8e73ad0fe503b24342ea21",
-
-measurementId: "G-046K5CHHJV"
-
-};
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
-let editingId = null;
-
-window.showNotification = function(message){
-
-const n =
-document.getElementById("notification");
-
-n.innerText = message;
-
-n.style.display = "block";
-
-setTimeout(()=>{
-
-n.style.display = "none";
-
-},3000);
-
-}
-
-window.logout = function(){
-
-localStorage.removeItem(
-"adminLoggedIn"
-);
-
-window.location.href = "login.html";
-
-}
-
-window.addUser = async function(){
-
-const fullname =
-document.getElementById("fullname").value;
-
-const uniqueid =
-document.getElementById("uniqueid").value;
-
-const idnumber =
-document.getElementById("idnumber").value;
-
-const passport =
-document.getElementById("passport").value;
-
-const photoInput =
-document.getElementById("photo");
-
-const file =
-photoInput.files[0];
-
-if(
-fullname==="" ||
-uniqueid==="" ||
-idnumber==="" ||
-passport===""
-){
-
-showNotification(
-"Please fill all fields"
-);
-
-return;
-
-}
-
-let photoUrl = "";
-
-if(file){
-
-const reader =
-new FileReader();
-
-reader.readAsDataURL(file);
-
-photoUrl =
-await new Promise((resolve)=>{
-
-reader.onload = ()=>
-resolve(reader.result);
-
-});
-
-}
-
-if(editingId){
-
-await updateDoc(
-doc(db,"users",editingId),
-{
-fullname,
-uniqueid,
-idnumber,
-passport,
-photo:photoUrl
-}
-);
-
-showNotification(
-"Applicant Updated"
-);
-
-editingId = null;
-
-}else{
-
-await addDoc(
-collection(db,"users"),
-{
-fullname,
-uniqueid,
-idnumber,
-passport,
-photo:photoUrl
-}
-);
-
-showNotification(
-"Applicant Registered"
-);
-
-}
-
-setTimeout(()=>{
-
-location.reload();
-
-},1000);
-
-}
-
-async function loadUsers(){
-
-const querySnapshot =
-await getDocs(
-collection(db,"users")
-);
-
-const table =
-document.getElementById("userdata");
-
-table.innerHTML = "";
-
-let total=0;
-let approved=0;
-let rejected=0;
-let processing=0;
-
-querySnapshot.forEach((userDoc)=>{
-
-total++;
-
-const data = userDoc.data();
-
-let statusClass="processing";
-
-if(data.passport==="Approved"){
-
-approved++;
-statusClass="approved";
-
-}else if(data.passport==="Rejected"){
-
-rejected++;
-statusClass="rejected";
-
-}else{
-
-processing++;
-
-}
-
-table.innerHTML += `
-
-<tr>
-
-<td>
-
-<img
-src="${data.photo}"
-class="profile"
-onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
-
-</td>
-
-<td>${data.fullname}</td>
-
-<td>${data.uniqueid}</td>
-
-<td>${data.idnumber}</td>
-
-<td>
-
-<select
-class="status-select ${statusClass}"
-onchange="changeStatus(
-'${userDoc.id}',
-this.value
-)">
-
-<option value="Processing"
-${data.passport==="Processing"?"selected":""}>
-Processing
-</option>
-
-<option value="Approved"
-${data.passport==="Approved"?"selected":""}>
-Approved
-</option>
-
-<option value="Rejected"
-${data.passport==="Rejected"?"selected":""}>
-Rejected
-</option>
-
-</select>
-
-</td>
-
-<td>
-
-<button
-class="action-btn print"
-onclick="printSlip(
-'${data.fullname}',
-'${data.uniqueid}',
-'${data.idnumber}',
-'${data.passport}',
-'${data.photo}'
-)">
-Print
-</button>
-
-<button
-class="action-btn edit"
-onclick="editUser(
-'${userDoc.id}',
-'${data.fullname}',
-'${data.uniqueid}',
-'${data.idnumber}',
-'${data.passport}'
-)">
-Edit
-</button>
-
-<button
-class="action-btn delete"
-onclick="deleteUser('${userDoc.id}')">
-Delete
-</button>
-
-</td>
-
-</tr>
-
-`;
-
-});
-
-document.getElementById("total").innerText=total;
-document.getElementById("approvedCount").innerText=approved;
-document.getElementById("rejectedCount").innerText=rejected;
-document.getElementById("processingCount").innerText=processing;
-
-}
-
-window.changeStatus = async function(
-id,
-newStatus
-){
-
-await updateDoc(
-doc(db,"users",id),
-{
-passport:newStatus
-}
-);
-
-showNotification(
-"Status Updated"
-);
-
-setTimeout(()=>{
-
-location.reload();
-
-},500);
-
-}
-
-window.editUser = function(
-id,
-fullname,
-uniqueid,
-idnumber,
-passport
-){
-
-editingId=id;
-
-document.getElementById("fullname").value=fullname;
-
-document.getElementById("uniqueid").value=uniqueid;
-
-document.getElementById("idnumber").value=idnumber;
-
-document.getElementById("passport").value=passport;
-
-showNotification(
-"Applicant Loaded"
-);
-
-}
-
-window.deleteUser = async function(id){
-
-await deleteDoc(
-doc(db,"users",id)
-);
-
-showNotification(
-"Applicant Deleted"
-);
-
-setTimeout(()=>{
-
-location.reload();
-
-},1000);
-
-}
-
-window.searchUser = function(){
-
-const input =
-document.getElementById("search")
-.value.toLowerCase();
-
-const rows =
-document.querySelectorAll("#userdata tr");
-
-rows.forEach((row)=>{
-
-const text =
-row.innerText.toLowerCase();
-
-row.style.display =
-text.includes(input)
-? ""
-: "none";
-
-});
-
-}
-
-window.printSlip = function(
-fullname,
-uniqueid,
-idnumber,
-passport,
-photo
-){
-
-const win = window.open("");
-
-win.document.write(`
-
-<div style="
-font-family:Inter;
-padding:30px;
-">
-
-<h1 style="
-color:#d52b1e;
-">
-Canada Visa Slip
-</h1>
-
-<img
-src="${photo}"
-width="120"
-height="120"
-style="
-border-radius:12px;
-object-fit:cover;
-border:3px solid #d52b1e;
-">
-
-<h2>${fullname}</h2>
-
-<p>
-<b>Unique ID:</b>
-${uniqueid}
-</p>
-
-<p>
-<b>ID Number:</b>
-${idnumber}
-</p>
-
-<p>
-<b>Status:</b>
-${passport}
-</p>
-
-</div>
-
-`);
-
-win.print();
-
-}
-
-loadUsers();
-
-</script>
-
-</body>
-  </html>
+  </style>
