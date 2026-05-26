@@ -1,4 +1,624 @@
-<!-- ========= QR + PDF SECTION ========= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Canada Embassy Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#f3f6fb;
+display:flex;
+color:#111827;
+overflow-x:hidden;
+}
+
+.sidebar{
+width:280px;
+height:100vh;
+background:#0b1727;
+position:fixed;
+left:0;
+top:0;
+padding:25px 18px;
+overflow:auto;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:14px;
+margin-bottom:40px;
+padding:0 8px;
+}
+
+.logo img{
+width:60px;
+height:60px;
+border-radius:16px;
+}
+
+.logo-text h1{
+font-size:24px;
+font-weight:800;
+color:white;
+}
+
+.logo-text p{
+font-size:13px;
+color:#94a3b8;
+margin-top:4px;
+}
+
+.menu{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.menu a{
+display:flex;
+align-items:center;
+gap:14px;
+padding:16px 18px;
+border-radius:16px;
+text-decoration:none;
+font-size:15px;
+font-weight:600;
+color:#cbd5e1;
+transition:.3s;
+}
+
+.menu a:hover{
+background:#132238;
+color:white;
+}
+
+.menu .active{
+background:linear-gradient(
+90deg,
+#d52b1e,
+#ff3b30
+);
+color:white;
+}
+
+.main{
+margin-left:280px;
+width:calc(100% - 280px);
+padding:25px;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:28px;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.title h1{
+font-size:40px;
+font-weight:800;
+color:#0f172a;
+margin-bottom:6px;
+}
+
+.title p{
+color:#64748b;
+font-size:15px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:22px;
+margin-bottom:28px;
+}
+
+.card{
+background:white;
+padding:26px;
+border-radius:24px;
+box-shadow:0 10px 25px rgba(15,23,42,0.05);
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.card h3{
+font-size:15px;
+color:#64748b;
+margin-bottom:10px;
+}
+
+.card h1{
+font-size:46px;
+font-weight:800;
+color:#0f172a;
+}
+
+.card-icon{
+width:75px;
+height:75px;
+border-radius:22px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+}
+
+.blue{
+background:#dbeafe;
+color:#2563eb;
+}
+
+.green{
+background:#dcfce7;
+color:#16a34a;
+}
+
+.red{
+background:#fee2e2;
+color:#dc2626;
+}
+
+.orange{
+background:#ffedd5;
+color:#ea580c;
+}
+
+.section{
+background:white;
+border-radius:24px;
+padding:28px;
+margin-bottom:28px;
+box-shadow:0 10px 25px rgba(15,23,42,0.05);
+}
+
+.section-title{
+font-size:30px;
+font-weight:800;
+margin-bottom:24px;
+color:#0f172a;
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.input-group{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.input-group label{
+font-size:14px;
+font-weight:700;
+color:#334155;
+}
+
+input,
+select{
+padding:16px;
+border-radius:16px;
+border:1px solid #dbe2ea;
+font-size:15px;
+outline:none;
+background:#f8fafc;
+}
+
+.register-btn{
+margin-top:22px;
+width:100%;
+padding:17px;
+border:none;
+border-radius:18px;
+background:linear-gradient(
+90deg,
+#d52b1e,
+#ff3b30
+);
+color:white;
+font-size:17px;
+font-weight:800;
+cursor:pointer;
+}
+
+.table-wrap{
+overflow:auto;
+}
+
+table{
+width:100%;
+border-collapse:separate;
+border-spacing:0 12px;
+min-width:1000px;
+}
+
+thead th{
+font-size:13px;
+text-transform:uppercase;
+color:#64748b;
+padding:0 18px 10px;
+}
+
+tbody tr{
+background:#f8fafc;
+}
+
+td{
+padding:18px;
+font-size:14px;
+}
+
+.profile{
+width:70px;
+height:70px;
+border-radius:18px;
+object-fit:cover;
+border:3px solid #d52b1e;
+}
+
+.status{
+padding:10px 16px;
+border-radius:14px;
+font-size:13px;
+font-weight:700;
+display:inline-block;
+}
+
+.processing{
+background:#ffedd5;
+color:#ea580c;
+}
+
+.approved{
+background:#dcfce7;
+color:#16a34a;
+}
+
+.rejected{
+background:#fee2e2;
+color:#dc2626;
+}
+
+.action-buttons{
+display:flex;
+gap:8px;
+}
+
+.action-btn{
+padding:10px 14px;
+border:none;
+border-radius:14px;
+font-size:13px;
+font-weight:700;
+cursor:pointer;
+color:white;
+}
+
+.edit{
+background:#f59e0b;
+}
+
+.delete{
+background:#dc2626;
+}
+
+.info-card{
+background:white;
+padding:20px;
+border-radius:18px;
+border:1px solid #dbe2ea;
+}
+
+.info-card h4{
+font-size:13px;
+color:#64748b;
+margin-bottom:10px;
+}
+
+.info-card p{
+font-size:18px;
+font-weight:800;
+color:#0f172a;
+}
+
+@media(max-width:1000px){
+
+.sidebar{
+display:none;
+}
+
+.main{
+margin-left:0;
+width:100%;
+padding:15px;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+.cards{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg">
+
+<div class="logo-text">
+
+<h1>Canada Visa</h1>
+
+<p>Embassy Management Portal</p>
+
+</div>
+
+</div>
+
+<div class="menu">
+
+<a href="#" class="active">
+<i class="fa-solid fa-chart-line"></i>
+Dashboard
+</a>
+
+<a href="visa-track.html">
+<i class="fa-solid fa-magnifying-glass"></i>
+Track Visa
+</a>
+
+<a href="admin-login.html">
+<i class="fa-solid fa-lock"></i>
+Admin Login
+</a>
+
+</div>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<div class="title">
+
+<h1>Canada Embassy Dashboard</h1>
+
+<p>Professional immigration management system</p>
+
+</div>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<div>
+
+<h3>Total Applicants</h3>
+
+<h1 id="total">0</h1>
+
+</div>
+
+<div class="card-icon blue">
+<i class="fa-solid fa-users"></i>
+</div>
+
+</div>
+
+<div class="card">
+
+<div>
+
+<h3>Approved</h3>
+
+<h1 id="approvedCount">0</h1>
+
+</div>
+
+<div class="card-icon green">
+<i class="fa-solid fa-circle-check"></i>
+</div>
+
+</div>
+
+<div class="card">
+
+<div>
+
+<h3>Rejected</h3>
+
+<h1 id="rejectedCount">0</h1>
+
+</div>
+
+<div class="card-icon red">
+<i class="fa-solid fa-circle-xmark"></i>
+</div>
+
+</div>
+
+<div class="card">
+
+<div>
+
+<h3>Processing</h3>
+
+<h1 id="processingCount">0</h1>
+
+</div>
+
+<div class="card-icon orange">
+<i class="fa-solid fa-clock"></i>
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2 class="section-title">
+Register Applicant
+</h2>
+
+<div class="form-grid">
+
+<div class="input-group">
+
+<label>Full Name</label>
+
+<input
+type="text"
+id="fullname"
+placeholder="Enter full name">
+
+</div>
+
+<div class="input-group">
+
+<label>Unique ID</label>
+
+<input
+type="text"
+id="uniqueid"
+placeholder="Enter unique ID">
+
+</div>
+
+<div class="input-group">
+
+<label>ID Number</label>
+
+<input
+type="text"
+id="idnumber"
+placeholder="Enter ID Number">
+
+</div>
+
+<div class="input-group">
+
+<label>Status</label>
+
+<select id="passport">
+
+<option value="">
+Select Status
+</option>
+
+<option value="Processing">
+Processing
+</option>
+
+<option value="Approved">
+Approved
+</option>
+
+<option value="Rejected">
+Rejected
+</option>
+
+</select>
+
+</div>
+
+<div class="input-group">
+
+<label>Applicant Photo</label>
+
+<input
+type="file"
+id="photo"
+accept="image/*">
+
+</div>
+
+</div>
+
+<button
+class="register-btn"
+onclick="addUser()">
+
+Register Applicant
+
+</button>
+
+</div>
+
+<div class="section">
+
+<h2 class="section-title">
+Registered Applicants
+</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Photo</th>
+<th>Name</th>
+<th>Unique ID</th>
+<th>ID Number</th>
+<th>Status</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="userdata">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
 
 <div class="section">
 
@@ -76,7 +696,7 @@ Official Embassy Verification Document
 </div>
 
 <img
-src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=CanadaVisa"
+src=""
 id="qrImage"
 style="
 width:150px;
@@ -147,7 +767,6 @@ font-weight:800;
 cursor:pointer;
 ">
 
-<i class="fa-solid fa-download"></i>
 Download PDF
 
 </button>
@@ -156,36 +775,255 @@ Download PDF
 
 </div>
 
-<style>
+</div>
 
-.info-card{
-background:white;
-padding:20px;
-border-radius:18px;
-border:1px solid #dbe2ea;
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+addDoc,
+getDocs,
+deleteDoc,
+doc
+}
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyDMOQzKuw8IVrq0kh35tNC-P6PuiHlIA-g",
+
+authDomain: "canada-visa-system-f9c45.firebaseapp.com",
+
+projectId: "canada-visa-system-f9c45",
+
+storageBucket: "canada-visa-system-f9c45.firebasestorage.app",
+
+messagingSenderId: "772100856692",
+
+appId: "1:772100856692:web:8e73ad0fe503b24342ea21",
+
+measurementId: "G-046K5CHHJV"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+window.editingId = null;
+
+window.addUser = async function(){
+
+const fullname =
+document.getElementById("fullname").value;
+
+const uniqueid =
+document.getElementById("uniqueid").value;
+
+const idnumber =
+document.getElementById("idnumber").value;
+
+const passport =
+document.getElementById("passport").value;
+
+const photoInput =
+document.getElementById("photo");
+
+const file =
+photoInput.files[0];
+
+if(
+fullname==="" ||
+uniqueid==="" ||
+idnumber==="" ||
+passport===""
+){
+alert("Fill all fields");
+return;
 }
 
-.info-card h4{
-font-size:13px;
-color:#64748b;
-margin-bottom:10px;
+let photoUrl="";
+
+if(file){
+
+const reader = new FileReader();
+
+reader.readAsDataURL(file);
+
+photoUrl =
+await new Promise((resolve)=>{
+reader.onload=()=>resolve(reader.result);
+});
+
 }
 
-.info-card p{
-font-size:18px;
-font-weight:800;
-color:#0f172a;
+if(window.editingId){
+
+await deleteDoc(
+doc(db,"users",window.editingId)
+);
+
+window.editingId = null;
+
 }
 
-</style>
+await addDoc(
+collection(db,"users"),
+{
+fullname,
+uniqueid,
+idnumber,
+passport,
+photo:photoUrl
+}
+);
 
-<!-- ========= PDF LIBRARY ========= -->
+alert("Applicant Saved");
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+location.reload();
 
-<!-- ========= ADD THIS INSIDE YOUR EXISTING SCRIPT ========= -->
+}
 
-<script>
+async function loadUsers(){
+
+const querySnapshot =
+await getDocs(
+collection(db,"users")
+);
+
+const table =
+document.getElementById("userdata");
+
+table.innerHTML="";
+
+let total=0;
+let approved=0;
+let rejected=0;
+let processing=0;
+
+querySnapshot.forEach((userDoc)=>{
+
+total++;
+
+const data = userDoc.data();
+
+let statusClass="processing";
+
+if(data.passport==="Approved"){
+approved++;
+statusClass="approved";
+}
+else if(data.passport==="Rejected"){
+rejected++;
+statusClass="rejected";
+}
+else{
+processing++;
+}
+
+table.innerHTML += `
+
+<tr>
+
+<td>
+
+<img
+src="${data.photo}"
+class="profile"
+onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
+
+</td>
+
+<td>${data.fullname}</td>
+
+<td>${data.uniqueid}</td>
+
+<td>${data.idnumber}</td>
+
+<td>
+
+<div class="status ${statusClass}">
+${data.passport}
+</div>
+
+</td>
+
+<td>
+
+<div class="action-buttons">
+
+<button
+class="action-btn edit"
+onclick="editUser(
+'${userDoc.id}',
+'${data.fullname}',
+'${data.uniqueid}',
+'${data.idnumber}',
+'${data.passport}'
+)">
+Edit
+</button>
+
+<button
+class="action-btn delete"
+onclick="deleteUser('${userDoc.id}')">
+Delete
+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("total").innerText=total;
+document.getElementById("approvedCount").innerText=approved;
+document.getElementById("rejectedCount").innerText=rejected;
+document.getElementById("processingCount").innerText=processing;
+
+}
+
+window.deleteUser = async function(id){
+
+await deleteDoc(
+doc(db,"users",id)
+);
+
+location.reload();
+
+}
+
+window.editUser = function(
+id,
+fullname,
+uniqueid,
+idnumber,
+passport
+){
+
+document.getElementById("fullname").value = fullname;
+
+document.getElementById("uniqueid").value = uniqueid;
+
+document.getElementById("idnumber").value = idnumber;
+
+document.getElementById("passport").value = passport;
+
+window.editingId = id;
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
 
 window.generateCertificate = async function(){
 
@@ -255,4 +1093,9 @@ html2pdf()
 
 }
 
-  </script>
+loadUsers();
+
+</script>
+
+</body>
+  </html>
