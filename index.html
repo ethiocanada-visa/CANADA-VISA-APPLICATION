@@ -30,8 +30,6 @@ color:#111827;
 overflow-x:hidden;
 }
 
-/* ========= SIDEBAR ========= */
-
 .sidebar{
 width:280px;
 height:100vh;
@@ -88,10 +86,6 @@ color:#cbd5e1;
 transition:.3s;
 }
 
-.menu a i{
-font-size:18px;
-}
-
 .menu a:hover{
 background:#132238;
 color:white;
@@ -104,18 +98,13 @@ background:linear-gradient(
 #ff3b30
 );
 color:white;
-box-shadow:0 10px 25px rgba(213,43,30,0.25);
 }
-
-/* ========= MAIN ========= */
 
 .main{
 margin-left:280px;
 width:calc(100% - 280px);
 padding:25px;
 }
-
-/* ========= TOPBAR ========= */
 
 .topbar{
 display:flex;
@@ -173,17 +162,6 @@ border-radius:50%;
 object-fit:cover;
 }
 
-.admin h4{
-font-size:15px;
-}
-
-.admin p{
-font-size:13px;
-color:#16a34a;
-}
-
-/* ========= CARDS ========= */
-
 .cards{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
@@ -211,12 +189,6 @@ margin-bottom:10px;
 font-size:46px;
 font-weight:800;
 color:#0f172a;
-}
-
-.card p{
-font-size:13px;
-color:#94a3b8;
-margin-top:10px;
 }
 
 .card-icon{
@@ -249,8 +221,6 @@ background:#ffedd5;
 color:#ea580c;
 }
 
-/* ========= SECTION ========= */
-
 .section{
 background:white;
 border-radius:24px;
@@ -265,8 +235,6 @@ font-weight:800;
 margin-bottom:24px;
 color:#0f172a;
 }
-
-/* ========= FORM ========= */
 
 .form-grid{
 display:grid;
@@ -294,13 +262,6 @@ border:1px solid #dbe2ea;
 font-size:15px;
 outline:none;
 background:#f8fafc;
-transition:.3s;
-}
-
-input:focus,
-select:focus{
-border-color:#2563eb;
-background:white;
 }
 
 .register-btn{
@@ -318,10 +279,7 @@ color:white;
 font-size:17px;
 font-weight:800;
 cursor:pointer;
-box-shadow:0 12px 24px rgba(213,43,30,0.25);
 }
-
-/* ========= TABLE ========= */
 
 .table-header{
 display:flex;
@@ -363,16 +321,6 @@ tbody tr{
 background:#f8fafc;
 }
 
-tbody tr td:first-child{
-border-top-left-radius:18px;
-border-bottom-left-radius:18px;
-}
-
-tbody tr td:last-child{
-border-top-right-radius:18px;
-border-bottom-right-radius:18px;
-}
-
 td{
 padding:18px;
 font-size:14px;
@@ -384,18 +332,6 @@ height:70px;
 border-radius:18px;
 object-fit:cover;
 border:3px solid #d52b1e;
-}
-
-.name{
-font-weight:700;
-font-size:15px;
-color:#0f172a;
-}
-
-.id-text{
-font-size:13px;
-color:#64748b;
-margin-top:4px;
 }
 
 .status{
@@ -424,7 +360,6 @@ color:#dc2626;
 .action-buttons{
 display:flex;
 gap:8px;
-flex-wrap:wrap;
 }
 
 .action-btn{
@@ -445,7 +380,16 @@ background:#f59e0b;
 background:#dc2626;
 }
 
-/* ========= MOBILE ========= */
+.track-link{
+display:inline-block;
+margin-top:20px;
+padding:16px 22px;
+background:#2563eb;
+color:white;
+border-radius:16px;
+text-decoration:none;
+font-weight:700;
+}
 
 @media(max-width:1000px){
 
@@ -463,16 +407,8 @@ padding:15px;
 grid-template-columns:1fr;
 }
 
-.title h1{
-font-size:28px;
-}
-
 .cards{
 grid-template-columns:1fr;
-}
-
-.search{
-width:100%;
 }
 
 }
@@ -482,8 +418,6 @@ width:100%;
 </head>
 
 <body>
-
-<!-- ========= SIDEBAR ========= -->
 
 <div class="sidebar">
 
@@ -495,9 +429,7 @@ width:100%;
 
 <h1>Canada Visa</h1>
 
-<p>
-Embassy Management Portal
-</p>
+<p>Embassy Management Portal</p>
 
 </div>
 
@@ -510,36 +442,14 @@ Embassy Management Portal
 Dashboard
 </a>
 
-<a href="#">
-<i class="fa-solid fa-users"></i>
-Applicants
-</a>
-
-<a href="#">
-<i class="fa-solid fa-passport"></i>
-Visa Status
-</a>
-
-<a href="#">
-<i class="fa-solid fa-building"></i>
-Embassy
-</a>
-
-<a href="#">
-<i class="fa-solid fa-gear"></i>
-Settings
-</a>
-
-<a href="#">
-<i class="fa-solid fa-right-from-bracket"></i>
-Logout
+<a href="visa-track.html">
+<i class="fa-solid fa-magnifying-glass"></i>
+Track Visa
 </a>
 
 </div>
 
 </div>
-
-<!-- ========= MAIN ========= -->
 
 <div class="main">
 
@@ -547,13 +457,9 @@ Logout
 
 <div class="title">
 
-<h1>
-Canada Embassy Dashboard
-</h1>
+<h1>Canada Embassy Dashboard</h1>
 
-<p>
-Professional immigration & visa management system
-</p>
+<p>Professional immigration management system</p>
 
 </div>
 
@@ -570,13 +476,9 @@ placeholder="Search applicants...">
 
 <div>
 
-<h4>
-Admin Officer
-</h4>
+<h4>Admin Officer</h4>
 
-<p>
-Online
-</p>
+<p style="color:#16a34a;">Online</p>
 
 </div>
 
@@ -585,8 +487,6 @@ Online
 </div>
 
 </div>
-
-<!-- ========= CARDS ========= -->
 
 <div class="cards">
 
@@ -596,13 +496,7 @@ Online
 
 <h3>Total Applicants</h3>
 
-<h1 id="total">
-0
-</h1>
-
-<p>
-Registered visa applicants
-</p>
+<h1 id="total">0</h1>
 
 </div>
 
@@ -618,13 +512,7 @@ Registered visa applicants
 
 <h3>Approved</h3>
 
-<h1 id="approvedCount">
-0
-</h1>
-
-<p>
-Successfully approved
-</p>
+<h1 id="approvedCount">0</h1>
 
 </div>
 
@@ -640,13 +528,7 @@ Successfully approved
 
 <h3>Rejected</h3>
 
-<h1 id="rejectedCount">
-0
-</h1>
-
-<p>
-Rejected applications
-</p>
+<h1 id="rejectedCount">0</h1>
 
 </div>
 
@@ -662,13 +544,7 @@ Rejected applications
 
 <h3>Processing</h3>
 
-<h1 id="processingCount">
-0
-</h1>
-
-<p>
-Pending applications
-</p>
+<h1 id="processingCount">0</h1>
 
 </div>
 
@@ -680,8 +556,6 @@ Pending applications
 
 </div>
 
-<!-- ========= REGISTER ========= -->
-
 <div class="section">
 
 <h2 class="section-title">
@@ -692,22 +566,18 @@ Register Applicant
 
 <div class="input-group">
 
-<label>
-Full Name
-</label>
+<label>Full Name</label>
 
 <input
 type="text"
 id="fullname"
-placeholder="Enter applicant full name">
+placeholder="Enter full name">
 
 </div>
 
 <div class="input-group">
 
-<label>
-Unique ID
-</label>
+<label>Unique ID</label>
 
 <input
 type="text"
@@ -718,22 +588,18 @@ placeholder="Enter unique ID">
 
 <div class="input-group">
 
-<label>
-ID Number
-</label>
+<label>ID Number</label>
 
 <input
 type="text"
 id="idnumber"
-placeholder="Enter ID number">
+placeholder="Enter ID Number">
 
 </div>
 
 <div class="input-group">
 
-<label>
-Passport Status
-</label>
+<label>Status</label>
 
 <select id="passport">
 
@@ -759,9 +625,7 @@ Rejected
 
 <div class="input-group">
 
-<label>
-Applicant Photo
-</label>
+<label>Applicant Photo</label>
 
 <input
 type="file"
@@ -776,14 +640,19 @@ accept="image/*">
 class="register-btn"
 onclick="addUser()">
 
-<i class="fa-solid fa-user-plus"></i>
 Register Applicant
 
 </button>
 
-</div>
+<a
+href="visa-track.html"
+class="track-link">
 
-<!-- ========= TABLE ========= -->
+Open Tracking Page
+
+</a>
+
+</div>
 
 <div class="section">
 
@@ -796,7 +665,9 @@ Registered Applicants
 <input
 type="text"
 class="table-search"
-placeholder="Search applicants...">
+id="searchInput"
+placeholder="Search applicants..."
+onkeyup="searchApplicants()">
 
 </div>
 
@@ -808,11 +679,12 @@ placeholder="Search applicants...">
 
 <tr>
 
-<th>Applicant</th>
+<th>Photo</th>
+<th>Name</th>
 <th>Unique ID</th>
 <th>ID Number</th>
 <th>Status</th>
-<th>Actions</th>
+<th>Action</th>
 
 </tr>
 
@@ -866,6 +738,8 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
+window.editingId = null;
+
 window.addUser = async function(){
 
 const fullname =
@@ -892,28 +766,32 @@ uniqueid==="" ||
 idnumber==="" ||
 passport===""
 ){
-
 alert("Fill all fields");
-
 return;
-
 }
 
 let photoUrl="";
 
 if(file){
 
-const reader =
-new FileReader();
+const reader = new FileReader();
 
 reader.readAsDataURL(file);
 
 photoUrl =
 await new Promise((resolve)=>{
-
-reader.onload = ()=>resolve(reader.result);
-
+reader.onload=()=>resolve(reader.result);
 });
+
+}
+
+if(window.editingId){
+
+await deleteDoc(
+doc(db,"users",window.editingId)
+);
+
+window.editingId = null;
 
 }
 
@@ -928,7 +806,7 @@ photo:photoUrl
 }
 );
 
-alert("Applicant Registered");
+alert("Applicant Saved");
 
 location.reload();
 
@@ -960,19 +838,15 @@ const data = userDoc.data();
 let statusClass="processing";
 
 if(data.passport==="Approved"){
-
 approved++;
 statusClass="approved";
-
-}else if(data.passport==="Rejected"){
-
+}
+else if(data.passport==="Rejected"){
 rejected++;
 statusClass="rejected";
-
-}else{
-
+}
+else{
 processing++;
-
 }
 
 table.innerHTML += `
@@ -981,40 +855,18 @@ table.innerHTML += `
 
 <td>
 
-<div style="
-display:flex;
-align-items:center;
-gap:14px;
-">
-
 <img
 src="${data.photo}"
 class="profile"
 onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
 
-<div>
-
-<div class="name">
-${data.fullname}
-</div>
-
-<div class="id-text">
-Visa Applicant
-</div>
-
-</div>
-
-</div>
-
 </td>
 
-<td>
-${data.uniqueid}
-</td>
+<td>${data.fullname}</td>
 
-<td>
-${data.idnumber}
-</td>
+<td>${data.uniqueid}</td>
+
+<td>${data.idnumber}</td>
 
 <td>
 
@@ -1028,7 +880,15 @@ ${data.passport}
 
 <div class="action-buttons">
 
-<button class="action-btn edit">
+<button
+class="action-btn edit"
+onclick="editUser(
+'${userDoc.id}',
+'${data.fullname}',
+'${data.uniqueid}',
+'${data.idnumber}',
+'${data.passport}'
+)">
 Edit
 </button>
 
@@ -1049,11 +909,8 @@ Delete
 });
 
 document.getElementById("total").innerText=total;
-
 document.getElementById("approvedCount").innerText=approved;
-
 document.getElementById("rejectedCount").innerText=rejected;
-
 document.getElementById("processingCount").innerText=processing;
 
 }
@@ -1065,6 +922,54 @@ doc(db,"users",id)
 );
 
 location.reload();
+
+}
+
+window.editUser = function(
+id,
+fullname,
+uniqueid,
+idnumber,
+passport
+){
+
+document.getElementById("fullname").value = fullname;
+
+document.getElementById("uniqueid").value = uniqueid;
+
+document.getElementById("idnumber").value = idnumber;
+
+document.getElementById("passport").value = passport;
+
+window.editingId = id;
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+window.searchApplicants = function(){
+
+const input =
+document.getElementById("searchInput").value.toLowerCase();
+
+const rows =
+document.querySelectorAll("#userdata tr");
+
+rows.forEach((row)=>{
+
+const text =
+row.innerText.toLowerCase();
+
+if(text.includes(input)){
+row.style.display="";
+}else{
+row.style.display="none";
+}
+
+});
 
 }
 
