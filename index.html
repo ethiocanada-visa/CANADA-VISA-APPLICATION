@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Canada Embassy Admin Dashboard</title>
+<title>Canada Embassy Dashboard</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -165,6 +165,7 @@ width:70px;
 height:70px;
 object-fit:cover;
 border-radius:18px;
+border:3px solid #d52b1e;
 }
 
 .status{
@@ -199,14 +200,16 @@ font-weight:700;
 margin-right:6px;
 }
 
-.edit{
-background:#2563eb;
-color:white;
-}
-
 .delete{
 background:#dc2626;
 color:white;
+}
+
+.file-box{
+background:#f8fafc;
+padding:18px;
+border-radius:18px;
+border:1px solid #dbe2ea;
 }
 
 @media(max-width:900px){
@@ -323,10 +326,14 @@ placeholder="ID Number">
 
 <br>
 
+<div class="file-box">
+
 <input
-type="text"
+type="file"
 id="photo"
-placeholder="Photo Image URL">
+accept="image/*">
+
+</div>
 
 <button onclick="registerApplicant()">
 
@@ -419,18 +426,21 @@ document.getElementById("idnumber").value;
 const passport =
 document.getElementById("passport").value;
 
-const photo =
-document.getElementById("photo").value;
+const file =
+document.getElementById("photo").files[0];
 
 if(
 !fullname ||
 !uniqueid ||
 !idnumber ||
-!photo
+!file
 ){
 alert("Please fill all fields");
 return;
 }
+
+const photo =
+URL.createObjectURL(file);
 
 await addDoc(collection(db,"users"),{
 
@@ -442,7 +452,7 @@ photo
 
 });
 
-alert("Applicant Registered");
+alert("Applicant Registered Successfully");
 
 location.reload();
 
@@ -499,9 +509,11 @@ tableBody.innerHTML += `
 <tr>
 
 <td>
+
 <img
 src="${applicant.photo}"
 class="user-photo">
+
 </td>
 
 <td>${applicant.fullname}</td>
@@ -609,9 +621,11 @@ tableBody.innerHTML += `
 <tr>
 
 <td>
+
 <img
 src="${applicant.photo}"
 class="user-photo">
+
 </td>
 
 <td>${applicant.fullname}</td>
