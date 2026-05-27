@@ -483,8 +483,6 @@ width:100%;
 
 <body>
 
-<!-- ========= SIDEBAR ========= -->
-
 <div class="sidebar">
 
 <div class="logo">
@@ -495,9 +493,7 @@ width:100%;
 
 <h1>Canada Visa</h1>
 
-<p>
-Embassy Management Portal
-</p>
+<p>Embassy Management Portal</p>
 
 </div>
 
@@ -530,16 +526,9 @@ Embassy
 Settings
 </a>
 
-<a href="#">
-<i class="fa-solid fa-right-from-bracket"></i>
-Logout
-</a>
-
 </div>
 
 </div>
-
-<!-- ========= MAIN ========= -->
 
 <div class="main">
 
@@ -547,9 +536,7 @@ Logout
 
 <div class="title">
 
-<h1>
-Canada Embassy Dashboard
-</h1>
+<h1>Canada Embassy Dashboard</h1>
 
 <p>
 Professional immigration & visa management system
@@ -570,13 +557,9 @@ placeholder="Search applicants...">
 
 <div>
 
-<h4>
-Admin Officer
-</h4>
+<h4>Admin Officer</h4>
 
-<p>
-Online
-</p>
+<p>Online</p>
 
 </div>
 
@@ -585,8 +568,6 @@ Online
 </div>
 
 </div>
-
-<!-- ========= CARDS ========= -->
 
 <div class="cards">
 
@@ -596,13 +577,9 @@ Online
 
 <h3>Total Applicants</h3>
 
-<h1 id="total">
-0
-</h1>
+<h1 id="total">0</h1>
 
-<p>
-Registered visa applicants
-</p>
+<p>Registered visa applicants</p>
 
 </div>
 
@@ -618,13 +595,9 @@ Registered visa applicants
 
 <h3>Approved</h3>
 
-<h1 id="approvedCount">
-0
-</h1>
+<h1 id="approvedCount">0</h1>
 
-<p>
-Successfully approved
-</p>
+<p>Successfully approved</p>
 
 </div>
 
@@ -640,13 +613,9 @@ Successfully approved
 
 <h3>Rejected</h3>
 
-<h1 id="rejectedCount">
-0
-</h1>
+<h1 id="rejectedCount">0</h1>
 
-<p>
-Rejected applications
-</p>
+<p>Rejected applications</p>
 
 </div>
 
@@ -662,13 +631,9 @@ Rejected applications
 
 <h3>Processing</h3>
 
-<h1 id="processingCount">
-0
-</h1>
+<h1 id="processingCount">0</h1>
 
-<p>
-Pending applications
-</p>
+<p>Pending applications</p>
 
 </div>
 
@@ -680,8 +645,6 @@ Pending applications
 
 </div>
 
-<!-- ========= REGISTER ========= -->
-
 <div class="section">
 
 <h2 class="section-title">
@@ -692,9 +655,7 @@ Register Applicant
 
 <div class="input-group">
 
-<label>
-Full Name
-</label>
+<label>Full Name</label>
 
 <input
 type="text"
@@ -705,9 +666,7 @@ placeholder="Enter applicant full name">
 
 <div class="input-group">
 
-<label>
-Unique ID
-</label>
+<label>Unique ID</label>
 
 <input
 type="text"
@@ -718,9 +677,7 @@ placeholder="Enter unique ID">
 
 <div class="input-group">
 
-<label>
-ID Number
-</label>
+<label>ID Number</label>
 
 <input
 type="text"
@@ -731,9 +688,7 @@ placeholder="Enter ID number">
 
 <div class="input-group">
 
-<label>
-Passport Status
-</label>
+<label>Passport Status</label>
 
 <select id="passport">
 
@@ -759,9 +714,7 @@ Rejected
 
 <div class="input-group">
 
-<label>
-Applicant Photo
-</label>
+<label>Applicant Photo</label>
 
 <input
 type="file"
@@ -783,8 +736,6 @@ Register Applicant
 
 </div>
 
-<!-- ========= TABLE ========= -->
-
 <div class="section">
 
 <div class="table-header">
@@ -796,7 +747,9 @@ Registered Applicants
 <input
 type="text"
 class="table-search"
-placeholder="Search applicants...">
+id="searchInput"
+placeholder="Search applicants..."
+onkeyup="searchApplicants()">
 
 </div>
 
@@ -866,6 +819,8 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
+window.editingId = null;
+
 window.addUser = async function(){
 
 const fullname =
@@ -917,6 +872,16 @@ reader.onload = ()=>resolve(reader.result);
 
 }
 
+if(window.editingId){
+
+await deleteDoc(
+doc(db,"users",window.editingId)
+);
+
+window.editingId = null;
+
+}
+
 await addDoc(
 collection(db,"users"),
 {
@@ -928,7 +893,7 @@ photo:photoUrl
 }
 );
 
-alert("Applicant Registered");
+alert("Applicant Saved Successfully");
 
 location.reload();
 
@@ -1028,7 +993,15 @@ ${data.passport}
 
 <div class="action-buttons">
 
-<button class="action-btn edit">
+<button
+class="action-btn edit"
+onclick="editUser(
+'${userDoc.id}',
+'${data.fullname}',
+'${data.uniqueid}',
+'${data.idnumber}',
+'${data.passport}'
+)">
 Edit
 </button>
 
@@ -1065,6 +1038,58 @@ doc(db,"users",id)
 );
 
 location.reload();
+
+}
+
+window.editUser = function(
+id,
+fullname,
+uniqueid,
+idnumber,
+passport
+){
+
+document.getElementById("fullname").value = fullname;
+
+document.getElementById("uniqueid").value = uniqueid;
+
+document.getElementById("idnumber").value = idnumber;
+
+document.getElementById("passport").value = passport;
+
+window.editingId = id;
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+window.searchApplicants = function(){
+
+const input =
+document.getElementById("searchInput").value.toLowerCase();
+
+const rows =
+document.querySelectorAll("#userdata tr");
+
+rows.forEach((row)=>{
+
+const text =
+row.innerText.toLowerCase();
+
+if(text.includes(input)){
+
+row.style.display="";
+
+}else{
+
+row.style.display="none";
+
+}
+
+});
 
 }
 
