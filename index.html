@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
@@ -11,7 +10,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 
@@ -23,162 +24,386 @@ font-family:'Inter',sans-serif;
 }
 
 body{
-background:#eef3f9;
-padding:20px;
-color:#0f172a;
+background:#f3f6fb;
+display:flex;
+color:#111827;
+overflow-x:hidden;
 }
 
-.container{
-max-width:1500px;
-margin:auto;
+/* ========= SIDEBAR ========= */
+
+.sidebar{
+width:280px;
+height:100vh;
+background:#0b1727;
+position:fixed;
+left:0;
+top:0;
+padding:25px 18px;
+overflow:auto;
 }
 
-.header{
-background:white;
-padding:35px;
-border-radius:30px;
-box-shadow:0 10px 30px rgba(15,23,42,0.06);
-margin-bottom:25px;
+.logo{
+display:flex;
+align-items:center;
+gap:14px;
+margin-bottom:40px;
+padding:0 8px;
+}
+
+.logo img{
+width:60px;
+height:60px;
+border-radius:16px;
+}
+
+.logo-text h1{
+font-size:24px;
+font-weight:800;
+color:white;
+}
+
+.logo-text p{
+font-size:13px;
+color:#94a3b8;
+margin-top:4px;
+}
+
+.menu{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.menu a{
+display:flex;
+align-items:center;
+gap:14px;
+padding:16px 18px;
+border-radius:16px;
+text-decoration:none;
+font-size:15px;
+font-weight:600;
+color:#cbd5e1;
+transition:.3s;
+}
+
+.menu a i{
+font-size:18px;
+}
+
+.menu a:hover{
+background:#132238;
+color:white;
+}
+
+.menu .active{
+background:linear-gradient(
+90deg,
+#d52b1e,
+#ff3b30
+);
+color:white;
+box-shadow:0 10px 25px rgba(213,43,30,0.25);
+}
+
+/* ========= MAIN ========= */
+
+.main{
+margin-left:280px;
+width:calc(100% - 280px);
+padding:25px;
+}
+
+/* ========= TOPBAR ========= */
+
+.topbar{
 display:flex;
 justify-content:space-between;
 align-items:center;
-flex-wrap:wrap;
+margin-bottom:28px;
 gap:20px;
+flex-wrap:wrap;
 }
 
-.header h1{
-font-size:38px;
-font-weight:900;
+.title h1{
+font-size:40px;
+font-weight:800;
+color:#0f172a;
+margin-bottom:6px;
 }
 
-.header p{
+.title p{
 color:#64748b;
-margin-top:6px;
+font-size:15px;
+}
+
+.top-right{
+display:flex;
+align-items:center;
+gap:15px;
+flex-wrap:wrap;
 }
 
 .search{
-padding:16px 20px;
-border-radius:18px;
-border:1px solid #dbe2ea;
-width:300px;
+background:white;
+border:none;
+padding:15px 18px;
+border-radius:16px;
+width:320px;
 font-size:15px;
 outline:none;
+box-shadow:0 5px 15px rgba(0,0,0,0.05);
 }
 
-.stats{
+.admin{
+background:white;
+padding:10px 16px;
+border-radius:18px;
+display:flex;
+align-items:center;
+gap:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.05);
+}
+
+.admin img{
+width:50px;
+height:50px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.admin h4{
+font-size:15px;
+}
+
+.admin p{
+font-size:13px;
+color:#16a34a;
+}
+
+/* ========= CARDS ========= */
+
+.cards{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:20px;
-margin-bottom:25px;
+gap:22px;
+margin-bottom:28px;
 }
 
 .card{
 background:white;
-padding:30px;
-border-radius:28px;
-box-shadow:0 10px 30px rgba(15,23,42,0.06);
+padding:26px;
+border-radius:24px;
+box-shadow:0 10px 25px rgba(15,23,42,0.05);
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
-.card h2{
-font-size:40px;
-font-weight:900;
+.card h3{
+font-size:15px;
+color:#64748b;
 margin-bottom:10px;
 }
 
+.card h1{
+font-size:46px;
+font-weight:800;
+color:#0f172a;
+}
+
 .card p{
-color:#64748b;
-font-weight:600;
+font-size:13px;
+color:#94a3b8;
+margin-top:10px;
 }
 
-.form-box{
-background:white;
-padding:35px;
-border-radius:30px;
-box-shadow:0 10px 30px rgba(15,23,42,0.06);
-margin-bottom:25px;
-}
-
-.form-box h2{
+.card-icon{
+width:75px;
+height:75px;
+border-radius:22px;
+display:flex;
+align-items:center;
+justify-content:center;
 font-size:30px;
-font-weight:900;
-margin-bottom:25px;
 }
 
-.grid{
+.blue{
+background:#dbeafe;
+color:#2563eb;
+}
+
+.green{
+background:#dcfce7;
+color:#16a34a;
+}
+
+.red{
+background:#fee2e2;
+color:#dc2626;
+}
+
+.orange{
+background:#ffedd5;
+color:#ea580c;
+}
+
+/* ========= SECTION ========= */
+
+.section{
+background:white;
+border-radius:24px;
+padding:28px;
+margin-bottom:28px;
+box-shadow:0 10px 25px rgba(15,23,42,0.05);
+}
+
+.section-title{
+font-size:30px;
+font-weight:800;
+margin-bottom:24px;
+color:#0f172a;
+}
+
+/* ========= FORM ========= */
+
+.form-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:20px;
 }
 
+.input-group{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.input-group label{
+font-size:14px;
+font-weight:700;
+color:#334155;
+}
+
 input,
 select{
-padding:18px;
-border-radius:18px;
+padding:16px;
+border-radius:16px;
 border:1px solid #dbe2ea;
-background:#f8fafc;
 font-size:15px;
 outline:none;
-width:100%;
+background:#f8fafc;
+transition:.3s;
 }
 
-.form-box button{
-margin-top:20px;
-padding:18px 28px;
+input:focus,
+select:focus{
+border-color:#2563eb;
+background:white;
+}
+
+.register-btn{
+margin-top:22px;
+width:100%;
+padding:17px;
 border:none;
 border-radius:18px;
-background:linear-gradient(90deg,#d52b1e,#ff3b30);
+background:linear-gradient(
+90deg,
+#d52b1e,
+#ff3b30
+);
 color:white;
+font-size:17px;
 font-weight:800;
 cursor:pointer;
-font-size:15px;
+box-shadow:0 12px 24px rgba(213,43,30,0.25);
 }
 
-.table-box{
-background:white;
-padding:35px;
-border-radius:30px;
-box-shadow:0 10px 30px rgba(15,23,42,0.06);
+/* ========= TABLE ========= */
+
+.table-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:22px;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.table-search{
+padding:14px 18px;
+border-radius:16px;
+border:1px solid #dbe2ea;
+width:280px;
+outline:none;
+background:#f8fafc;
+}
+
+.table-wrap{
 overflow:auto;
 }
 
 table{
 width:100%;
-border-collapse:collapse;
-margin-top:20px;
+border-collapse:separate;
+border-spacing:0 12px;
+min-width:1100px;
 }
 
-th{
+thead th{
+font-size:13px;
+text-transform:uppercase;
+color:#64748b;
+padding:0 18px 10px;
+}
+
+tbody tr{
 background:#f8fafc;
-padding:18px;
-text-align:left;
-font-size:14px;
+}
+
+tbody tr td:first-child{
+border-top-left-radius:18px;
+border-bottom-left-radius:18px;
+}
+
+tbody tr td:last-child{
+border-top-right-radius:18px;
+border-bottom-right-radius:18px;
 }
 
 td{
 padding:18px;
-border-bottom:1px solid #eef2f7;
 font-size:14px;
 }
 
-.user-photo{
+.profile{
 width:70px;
 height:70px;
-object-fit:cover;
 border-radius:18px;
+object-fit:cover;
 border:3px solid #d52b1e;
 }
 
-.status{
-padding:10px 14px;
-border-radius:14px;
-font-size:12px;
-font-weight:800;
-display:inline-block;
+.name{
+font-weight:700;
+font-size:15px;
+color:#0f172a;
 }
 
-.approved{
-background:#dcfce7;
-color:#16a34a;
+.id-text{
+font-size:13px;
+color:#64748b;
+margin-top:4px;
+}
+
+.status{
+padding:10px 16px;
+border-radius:14px;
+font-size:13px;
+font-weight:700;
+display:inline-block;
 }
 
 .processing{
@@ -186,41 +411,64 @@ background:#ffedd5;
 color:#ea580c;
 }
 
+.approved{
+background:#dcfce7;
+color:#16a34a;
+}
+
 .rejected{
 background:#fee2e2;
 color:#dc2626;
 }
 
+.action-buttons{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+
 .action-btn{
 padding:10px 14px;
 border:none;
-border-radius:12px;
-cursor:pointer;
+border-radius:14px;
+font-size:13px;
 font-weight:700;
-margin-right:6px;
+cursor:pointer;
+color:white;
+}
+
+.edit{
+background:#f59e0b;
 }
 
 .delete{
 background:#dc2626;
-color:white;
 }
 
-.file-box{
-background:#f8fafc;
-padding:18px;
-border-radius:18px;
-border:1px solid #dbe2ea;
+/* ========= MOBILE ========= */
+
+@media(max-width:1000px){
+
+.sidebar{
+display:none;
 }
 
-@media(max-width:900px){
+.main{
+margin-left:0;
+width:100%;
+padding:15px;
+}
 
-.grid{
+.form-grid{
 grid-template-columns:1fr;
 }
 
-.header{
-flex-direction:column;
-align-items:flex-start;
+.title h1{
+font-size:28px;
+}
+
+.cards{
+grid-template-columns:1fr;
 }
 
 .search{
@@ -235,98 +483,285 @@ width:100%;
 
 <body>
 
-<div class="container">
+<!-- ========= SIDEBAR ========= -->
 
-<div class="header">
+<div class="sidebar">
 
-<div>
+<div class="logo">
 
-<h1>Canada Embassy Dashboard</h1>
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg">
+
+<div class="logo-text">
+
+<h1>Canada Visa</h1>
 
 <p>
-Professional Immigration Management System
+Embassy Management Portal
 </p>
 
 </div>
 
+</div>
+
+<div class="menu">
+
+<a href="#" class="active">
+<i class="fa-solid fa-chart-line"></i>
+Dashboard
+</a>
+
+<a href="#">
+<i class="fa-solid fa-users"></i>
+Applicants
+</a>
+
+<a href="#">
+<i class="fa-solid fa-passport"></i>
+Visa Status
+</a>
+
+<a href="#">
+<i class="fa-solid fa-building"></i>
+Embassy
+</a>
+
+<a href="#">
+<i class="fa-solid fa-gear"></i>
+Settings
+</a>
+
+<a href="#">
+<i class="fa-solid fa-right-from-bracket"></i>
+Logout
+</a>
+
+</div>
+
+</div>
+
+<!-- ========= MAIN ========= -->
+
+<div class="main">
+
+<div class="topbar">
+
+<div class="title">
+
+<h1>
+Canada Embassy Dashboard
+</h1>
+
+<p>
+Professional immigration & visa management system
+</p>
+
+</div>
+
+<div class="top-right">
+
 <input
 type="text"
 class="search"
-placeholder="Search applicants..."
-id="searchInput">
+placeholder="Search applicants...">
+
+<div class="admin">
+
+<img src="https://i.pravatar.cc/100">
+
+<div>
+
+<h4>
+Admin Officer
+</h4>
+
+<p>
+Online
+</p>
 
 </div>
 
-<div class="stats">
+</div>
+
+</div>
+
+</div>
+
+<!-- ========= CARDS ========= -->
+
+<div class="cards">
 
 <div class="card">
 
-<h2 id="totalApplicants">0</h2>
+<div>
 
-<p>Total Applicants</p>
+<h3>Total Applicants</h3>
+
+<h1 id="total">
+0
+</h1>
+
+<p>
+Registered visa applicants
+</p>
+
+</div>
+
+<div class="card-icon blue">
+<i class="fa-solid fa-users"></i>
+</div>
 
 </div>
 
 <div class="card">
 
-<h2 id="approvedApplicants">0</h2>
+<div>
 
-<p>Approved</p>
+<h3>Approved</h3>
+
+<h1 id="approvedCount">
+0
+</h1>
+
+<p>
+Successfully approved
+</p>
+
+</div>
+
+<div class="card-icon green">
+<i class="fa-solid fa-circle-check"></i>
+</div>
 
 </div>
 
 <div class="card">
 
-<h2 id="rejectedApplicants">0</h2>
+<div>
 
-<p>Rejected</p>
+<h3>Rejected</h3>
+
+<h1 id="rejectedCount">
+0
+</h1>
+
+<p>
+Rejected applications
+</p>
+
+</div>
+
+<div class="card-icon red">
+<i class="fa-solid fa-circle-xmark"></i>
+</div>
 
 </div>
 
 <div class="card">
 
-<h2 id="processingApplicants">0</h2>
+<div>
 
-<p>Processing</p>
+<h3>Processing</h3>
 
+<h1 id="processingCount">
+0
+</h1>
+
+<p>
+Pending applications
+</p>
+
+</div>
+
+<div class="card-icon orange">
+<i class="fa-solid fa-clock"></i>
 </div>
 
 </div>
 
-<div class="form-box">
+</div>
 
-<h2>Register Applicant</h2>
+<!-- ========= REGISTER ========= -->
 
-<div class="grid">
+<div class="section">
+
+<h2 class="section-title">
+Register Applicant
+</h2>
+
+<div class="form-grid">
+
+<div class="input-group">
+
+<label>
+Full Name
+</label>
 
 <input
 type="text"
 id="fullname"
-placeholder="Full Name">
+placeholder="Enter applicant full name">
+
+</div>
+
+<div class="input-group">
+
+<label>
+Unique ID
+</label>
 
 <input
 type="text"
 id="uniqueid"
-placeholder="Unique ID">
+placeholder="Enter unique ID">
+
+</div>
+
+<div class="input-group">
+
+<label>
+ID Number
+</label>
 
 <input
 type="text"
 id="idnumber"
-placeholder="ID Number">
+placeholder="Enter ID number">
+
+</div>
+
+<div class="input-group">
+
+<label>
+Passport Status
+</label>
 
 <select id="passport">
 
-<option>Processing</option>
-<option>Approved</option>
-<option>Rejected</option>
+<option value="">
+Select Status
+</option>
+
+<option value="Processing">
+Processing
+</option>
+
+<option value="Approved">
+Approved
+</option>
+
+<option value="Rejected">
+Rejected
+</option>
 
 </select>
 
 </div>
 
-<br>
+<div class="input-group">
 
-<div class="file-box">
+<label>
+Applicant Photo
+</label>
 
 <input
 type="file"
@@ -335,19 +770,37 @@ accept="image/*">
 
 </div>
 
-<button onclick="registerApplicant()">
+</div>
 
-Register User
+<button
+class="register-btn"
+onclick="addUser()">
+
+<i class="fa-solid fa-user-plus"></i>
+Register Applicant
 
 </button>
 
 </div>
 
-<div class="table-box">
+<!-- ========= TABLE ========= -->
 
-<h2 style="font-size:30px;font-weight:900;">
+<div class="section">
+
+<div class="table-header">
+
+<h2 class="section-title">
 Registered Applicants
 </h2>
+
+<input
+type="text"
+class="table-search"
+placeholder="Search applicants...">
+
+</div>
+
+<div class="table-wrap">
 
 <table>
 
@@ -355,22 +808,23 @@ Registered Applicants
 
 <tr>
 
-<th>Photo</th>
-<th>Name</th>
+<th>Applicant</th>
 <th>Unique ID</th>
 <th>ID Number</th>
 <th>Status</th>
-<th>Action</th>
+<th>Actions</th>
 
 </tr>
 
 </thead>
 
-<tbody id="tableBody">
+<tbody id="userdata">
 
 </tbody>
 
 </table>
+
+</div>
 
 </div>
 
@@ -402,7 +856,9 @@ storageBucket: "canada-visa-system-f9c45.firebasestorage.app",
 
 messagingSenderId: "772100856692",
 
-appId: "1:772100856692:web:8e73ad0fe503b24342ea21"
+appId: "1:772100856692:web:8e73ad0fe503b24342ea21",
+
+measurementId: "G-046K5CHHJV"
 
 };
 
@@ -410,9 +866,7 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-let applicants=[];
-
-window.registerApplicant = async function(){
+window.addUser = async function(){
 
 const fullname =
 document.getElementById("fullname").value;
@@ -426,231 +880,165 @@ document.getElementById("idnumber").value;
 const passport =
 document.getElementById("passport").value;
 
+const photoInput =
+document.getElementById("photo");
+
 const file =
-document.getElementById("photo").files[0];
+photoInput.files[0];
 
 if(
-!fullname ||
-!uniqueid ||
-!idnumber ||
-!file
+fullname==="" ||
+uniqueid==="" ||
+idnumber==="" ||
+passport===""
 ){
-alert("Please fill all fields");
+
+alert("Fill all fields");
+
 return;
+
 }
 
-const photo =
-URL.createObjectURL(file);
+let photoUrl="";
 
-await addDoc(collection(db,"users"),{
+if(file){
 
+const reader =
+new FileReader();
+
+reader.readAsDataURL(file);
+
+photoUrl =
+await new Promise((resolve)=>{
+
+reader.onload = ()=>resolve(reader.result);
+
+});
+
+}
+
+await addDoc(
+collection(db,"users"),
+{
 fullname,
 uniqueid,
 idnumber,
 passport,
-photo
-
-});
-
-alert("Applicant Registered Successfully");
-
-location.reload();
-
+photo:photoUrl
 }
-
-async function loadApplicants(){
-
-const querySnapshot =
-await getDocs(collection(db,"users"));
-
-applicants=[];
-
-querySnapshot.forEach((docItem)=>{
-
-applicants.push({
-
-id:docItem.id,
-...docItem.data()
-
-});
-
-});
-
-renderApplicants();
-
-updateStats();
-
-}
-
-function renderApplicants(){
-
-const tableBody =
-document.getElementById("tableBody");
-
-tableBody.innerHTML="";
-
-applicants.forEach((applicant)=>{
-
-let statusClass="processing";
-
-if(applicant.passport==="Approved"){
-
-statusClass="approved";
-
-}
-else if(applicant.passport==="Rejected"){
-
-statusClass="rejected";
-
-}
-
-tableBody.innerHTML += `
-
-<tr>
-
-<td>
-
-<img
-src="${applicant.photo}"
-class="user-photo">
-
-</td>
-
-<td>${applicant.fullname}</td>
-
-<td>${applicant.uniqueid}</td>
-
-<td>${applicant.idnumber}</td>
-
-<td>
-
-<span class="status ${statusClass}">
-${applicant.passport}
-</span>
-
-</td>
-
-<td>
-
-<button
-class="action-btn delete"
-onclick="deleteApplicant('${applicant.id}')">
-
-Delete
-
-</button>
-
-</td>
-
-</tr>
-
-`;
-
-});
-
-}
-
-window.deleteApplicant = async function(id){
-
-await deleteDoc(doc(db,"users",id));
-
-alert("Applicant Deleted");
-
-location.reload();
-
-}
-
-function updateStats(){
-
-document.getElementById("totalApplicants").innerText =
-applicants.length;
-
-document.getElementById("approvedApplicants").innerText =
-applicants.filter(
-a=>a.passport==="Approved"
-).length;
-
-document.getElementById("rejectedApplicants").innerText =
-applicants.filter(
-a=>a.passport==="Rejected"
-).length;
-
-document.getElementById("processingApplicants").innerText =
-applicants.filter(
-a=>a.passport==="Processing"
-).length;
-
-}
-
-document.getElementById("searchInput")
-.addEventListener("input",(e)=>{
-
-const value =
-e.target.value.toLowerCase();
-
-const filtered =
-applicants.filter(a=>
-
-a.fullname.toLowerCase().includes(value) ||
-a.uniqueid.toLowerCase().includes(value)
-
 );
 
-const tableBody =
-document.getElementById("tableBody");
+alert("Applicant Registered");
 
-tableBody.innerHTML="";
+location.reload();
 
-filtered.forEach((applicant)=>{
+}
+
+async function loadUsers(){
+
+const querySnapshot =
+await getDocs(
+collection(db,"users")
+);
+
+const table =
+document.getElementById("userdata");
+
+table.innerHTML="";
+
+let total=0;
+let approved=0;
+let rejected=0;
+let processing=0;
+
+querySnapshot.forEach((userDoc)=>{
+
+total++;
+
+const data = userDoc.data();
 
 let statusClass="processing";
 
-if(applicant.passport==="Approved"){
+if(data.passport==="Approved"){
 
+approved++;
 statusClass="approved";
 
-}
-else if(applicant.passport==="Rejected"){
+}else if(data.passport==="Rejected"){
 
+rejected++;
 statusClass="rejected";
 
+}else{
+
+processing++;
+
 }
 
-tableBody.innerHTML += `
+table.innerHTML += `
 
 <tr>
 
 <td>
 
+<div style="
+display:flex;
+align-items:center;
+gap:14px;
+">
+
 <img
-src="${applicant.photo}"
-class="user-photo">
+src="${data.photo}"
+class="profile"
+onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
+
+<div>
+
+<div class="name">
+${data.fullname}
+</div>
+
+<div class="id-text">
+Visa Applicant
+</div>
+
+</div>
+
+</div>
 
 </td>
 
-<td>${applicant.fullname}</td>
+<td>
+${data.uniqueid}
+</td>
 
-<td>${applicant.uniqueid}</td>
-
-<td>${applicant.idnumber}</td>
+<td>
+${data.idnumber}
+</td>
 
 <td>
 
-<span class="status ${statusClass}">
-${applicant.passport}
-</span>
+<div class="status ${statusClass}">
+${data.passport}
+</div>
 
 </td>
 
 <td>
+
+<div class="action-buttons">
+
+<button class="action-btn edit">
+Edit
+</button>
 
 <button
 class="action-btn delete"
-onclick="deleteApplicant('${applicant.id}')">
-
+onclick="deleteUser('${userDoc.id}')">
 Delete
-
 </button>
+
+</div>
 
 </td>
 
@@ -660,9 +1048,27 @@ Delete
 
 });
 
-});
+document.getElementById("total").innerText=total;
 
-loadApplicants();
+document.getElementById("approvedCount").innerText=approved;
+
+document.getElementById("rejectedCount").innerText=rejected;
+
+document.getElementById("processingCount").innerText=processing;
+
+}
+
+window.deleteUser = async function(id){
+
+await deleteDoc(
+doc(db,"users",id)
+);
+
+location.reload();
+
+}
+
+loadUsers();
 
 </script>
 
