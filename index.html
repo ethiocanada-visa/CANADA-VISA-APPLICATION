@@ -9,7 +9,11 @@
 
 body{
 font-family:Arial,sans-serif;
-background:#f4f6f9;
+background:linear-gradient(
+135deg,
+#eef4ff,
+#f8fbff
+);
 margin:0;
 padding:20px;
 }
@@ -30,6 +34,8 @@ gap:10px;
 
 .title{
 color:#1f3c88;
+font-size:32px;
+font-weight:bold;
 }
 
 .btn{
@@ -38,10 +44,15 @@ border:none;
 border-radius:8px;
 cursor:pointer;
 font-weight:bold;
+transition:0.3s;
+}
+
+.btn:hover{
+opacity:0.9;
 }
 
 .green{
-background:#1db954;
+background:#d52b1e;
 color:white;
 }
 
@@ -50,10 +61,11 @@ background:#ddd;
 }
 
 .blue{
-background:#2d6cdf;
+background:#d52b1e;
 color:white;
 width:100%;
 margin-top:15px;
+font-size:16px;
 }
 
 .delete{
@@ -82,16 +94,22 @@ margin-bottom:20px;
 
 .card{
 background:white;
-padding:20px;
-border-radius:12px;
-box-shadow:0 2px 10px rgba(0,0,0,0.08);
+padding:25px;
+border-radius:18px;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
+transition:0.3s;
+border-left:6px solid #d52b1e;
+}
+
+.card:hover{
+transform:translateY(-5px);
 }
 
 .form-box{
 background:white;
-padding:20px;
-border-radius:12px;
-box-shadow:0 2px 10px rgba(0,0,0,0.08);
+padding:25px;
+border-radius:18px;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
 margin-bottom:20px;
 }
 
@@ -107,11 +125,17 @@ border:1px solid #ccc;
 border-radius:8px;
 width:100%;
 box-sizing:border-box;
+font-size:15px;
 }
 
 table{
 width:100%;
 border-collapse:collapse;
+}
+
+th{
+background:#1f3c88;
+color:white;
 }
 
 th,td{
@@ -144,6 +168,10 @@ padding:8px 12px;
 font-size:12px;
 }
 
+.title{
+font-size:24px;
+}
+
 }
 
 </style>
@@ -166,11 +194,17 @@ window.location.href = "login.html";
 <div class="header">
 
 <div>
-<h1 class="title">Canada Visa Admin Dashboard</h1>
-<p>Manage applicants and passport status</p>
+<h1 class="title">
+🇨🇦 Canada Visa Admin Dashboard
+</h1>
+
+<p>
+Manage applicants and passport status
+</p>
 </div>
 
 <div>
+
 <button class="btn green">
 New Applicant
 </button>
@@ -178,6 +212,7 @@ New Applicant
 <button class="btn gray" onclick="logout()">
 Logout
 </button>
+
 </div>
 
 </div>
@@ -447,8 +482,8 @@ const slip = window.open("","","width=600,height=700");
 
 slip.document.write(`
 
-<h2 style="text-align:center;color:#1f3c88;">
-Canada Visa Application Slip
+<h2 style="text-align:center;color:#d52b1e;">
+🇨🇦 Canada Visa Application Slip
 </h2>
 
 <hr>
