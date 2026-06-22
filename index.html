@@ -164,6 +164,14 @@ background:green;
 background:red;
 }
 
+.profile{
+width:55px;
+height:55px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid #d52b1e;
+}
+
 @media(max-width:700px){
 
 .form-grid{
@@ -288,6 +296,11 @@ type="text"
 id="passport"
 placeholder="Passport Status">
 
+<input
+type="file"
+id="photo"
+accept="image/*">
+
 </div>
 
 <button class="btn blue" onclick="addUser()">
@@ -318,6 +331,7 @@ border-radius:8px;
 <thead>
 
 <tr>
+<th>Photo</th>
 <th>Name</th>
 <th>Unique ID</th>
 <th>ID Number</th>
@@ -394,6 +408,20 @@ document.getElementById("idnumber").value;
 const passport =
 document.getElementById("passport").value;
 
+const photoInput =
+document.getElementById("photo");
+
+let photoUrl = "";
+
+if(photoInput.files[0]){
+
+photoUrl =
+URL.createObjectURL(
+photoInput.files[0]
+);
+
+}
+
 if(
 fullname === "" ||
 uniqueid === "" ||
@@ -411,7 +439,8 @@ await addDoc(collection(db,"users"),{
 fullname,
 uniqueid,
 idnumber,
-passport
+passport,
+photo: photoUrl
 
 });
 
@@ -470,6 +499,12 @@ table.innerHTML += `
 
 <tr>
 
+<td>
+<img
+src="${data.photo}"
+class="profile">
+</td>
+
 <td>${data.fullname}</td>
 
 <td>${data.uniqueid}</td>
@@ -490,7 +525,8 @@ onclick="printSlip(
 '${data.fullname}',
 '${data.uniqueid}',
 '${data.idnumber}',
-'${data.passport}'
+'${data.passport}',
+'${data.photo}'
 )">
 Print
 </button>
@@ -538,7 +574,8 @@ window.printSlip = function(
 fullname,
 uniqueid,
 idnumber,
-passport
+passport,
+photo
 ){
 
 const slip = window.open("","","width=600,height=700");
@@ -548,6 +585,22 @@ slip.document.write(`
 <h2 style="text-align:center;color:#d52b1e;">
 🇨🇦 Canada Visa Application Slip
 </h2>
+
+<div style="text-align:center;">
+
+<img
+src="${photo}"
+width="120"
+height="120"
+style="
+border-radius:12px;
+object-fit:cover;
+border:3px solid #d52b1e;
+">
+
+</div>
+
+<br>
 
 <hr>
 
