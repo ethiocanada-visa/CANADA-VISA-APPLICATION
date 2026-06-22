@@ -67,6 +67,12 @@ color:white;
 margin-right:5px;
 }
 
+.print{
+background:#673ab7;
+color:white;
+margin-right:5px;
+}
+
 .cards{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -120,18 +126,7 @@ padding:6px 10px;
 border-radius:6px;
 color:white;
 font-size:13px;
-}
-
-.processing{
 background:orange;
-}
-
-.approved{
-background:green;
-}
-
-.rejected{
-background:red;
 }
 
 @media(max-width:700px){
@@ -394,12 +389,23 @@ table.innerHTML += `
 <td>${data.idnumber}</td>
 
 <td>
-<span class="status processing">
+<span class="status">
 ${data.passport}
 </span>
 </td>
 
 <td>
+
+<button
+class="btn print"
+onclick="printSlip(
+'${data.fullname}',
+'${data.uniqueid}',
+'${data.idnumber}',
+'${data.passport}'
+)">
+Print
+</button>
 
 <button
 class="btn edit"
@@ -427,6 +433,43 @@ Delete
 });
 
 document.getElementById("total").innerText = count;
+
+}
+
+window.printSlip = function(
+fullname,
+uniqueid,
+idnumber,
+passport
+){
+
+const slip = window.open("","","width=600,height=700");
+
+slip.document.write(`
+
+<h2 style="text-align:center;color:#1f3c88;">
+Canada Visa Application Slip
+</h2>
+
+<hr>
+
+<p><b>Full Name:</b> ${fullname}</p>
+
+<p><b>Unique ID:</b> ${uniqueid}</p>
+
+<p><b>ID Number:</b> ${idnumber}</p>
+
+<p><b>Passport Status:</b> ${passport}</p>
+
+<hr>
+
+<h3 style="color:green;">
+Application Received Successfully
+</h3>
+
+`);
+
+slip.print();
 
 }
 
